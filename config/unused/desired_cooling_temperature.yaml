@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------------------
+# Template Sensor: Desired Cooling Temperature
+# Dynamically determines the ideal cooling setpoint based on time of day
+# and current outdoor temperature.
+#
+# - Nighttime: Fixed target temperature of 65°F
+# - Daytime: Interpolated based on outdoor temperature (capped at 75°F)
+# -----------------------------------------------------------------------------
+
+- sensor:
+    - name: desired_cooling_temperature
+      unique_id: desired_cooling_temperature
+      state: >
+        {% set is_night = is_state('sun.sun', 'below_horizon') %}
+        {% if is_night %}
+          65
+        {% else %}
+          {% set outdoor_temp = states('sensor.roaming_smartsensor_temperature') | float(95) %}
+          {% set min_outdoor = 80 %}
+          {% set max_outdoor = 95 %}
+          {% set min_target = 65 %}
+          {% set max_target = 75 %}
+          
+          {% if outdoor_temp <= min_outdoor %}
+            {{ min_target }}
+          {% elif outdoor_temp >= max_outdoor %}
+            {{ max_target }}
+          {% else %}
+            {{ min_target + ((outdoor_temp - min_outdoor) / (max_outdoor - min_outdoor) * (max_target - min_target)) | round(0) }}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "°F"
+      state_class: measurement
+      device_class: temperature

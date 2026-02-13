@@ -1,0 +1,33 @@
+# -----------------------------------------------------------------------------
+# Automation: Turn On Garage Outside Lights at Sunset
+# Turns on the exterior garage door lights when the sun sets.
+# -----------------------------------------------------------------------------
+
+- alias: Garage Outside Lights on at Sunset
+
+  id: "garage_outside_lights_on_at_sunset"  # Unique ID for UI tracking/editing
+  mode: single         # Ensures this automation won’t overlap if retriggered
+
+  # -----------------------------------------------------------------------------
+  # Triggers
+  # Fires precisely at sunset, based on the sun integration.
+  # -----------------------------------------------------------------------------
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "00:00:00"
+
+  # -----------------------------------------------------------------------------
+  # Conditions
+  # None defined — automation always triggers at sunset.
+  # -----------------------------------------------------------------------------
+  condition: []
+
+  # -----------------------------------------------------------------------------
+  # Actions
+  # Turns on the garage lights via the associated switch.
+  # -----------------------------------------------------------------------------
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.garage_door_lights

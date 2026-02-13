@@ -1,0 +1,53 @@
+# -----------------------------------------------------------------------------
+# Automation: Arm Home at 11PM
+# Every night at 11:00 PM, this automation:
+# 1. Locks the front door (if currently unlocked)
+# 2. Arms the Vivint security system to "home" (if currently disarmed)
+# -----------------------------------------------------------------------------
+
+- alias: Home Arm Stay at Night
+
+  id: "home_arm_stay_at_night"  # Unique ID for UI editing/tracking
+  mode: single          # Prevents overlapping execution
+
+  # -----------------------------------------------------------------------------
+  # Triggers
+  # Runs automatically at exactly 11:00 PM each night.
+  # -----------------------------------------------------------------------------
+  trigger:
+    - platform: time
+      at: "23:00:00"
+
+  # -----------------------------------------------------------------------------
+  # Conditions
+  # None defined — action always runs at 11:00 PM.
+  # -----------------------------------------------------------------------------
+  condition: []
+
+  # -----------------------------------------------------------------------------
+  # Actions
+  # Executes two checks in parallel:
+  # A. If the front door is unlocked, it locks it.
+  # B. If the alarm is disarmed, it sets it to arm_home.
+  # -----------------------------------------------------------------------------
+  action:
+    - parallel:
+        # Lock front door if unlocked
+        - if:
+            - condition: state
+              entity_id: lock.vivint_front_door_lock
+              state: "unlocked"
+          then:
+            - service: lock.lock
+              target:
+                entity_id: lock.vivint_front_door_lock
+
+        # Arm system if disarmed
+        - if:
+            - condition: state
+              entity_id: alarm_control_panel.vivint_smart_hub
+              state: "disarmed"
+          then:
+            - service: alarm_control_panel.alarm_arm_home
+              target:
+                entity_id: alarm_control_panel.vivint_smart_hub

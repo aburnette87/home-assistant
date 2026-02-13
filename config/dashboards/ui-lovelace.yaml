@@ -1,0 +1,105 @@
+views:
+  - type: sections
+    title: Overview
+    path: overview
+    badges:
+      - type: entity
+        entity: cover.garage_door
+        tap_action:
+          action: toggle
+
+      - alarm_control_panel.vivint_smart_hub
+      - climate.thermostat
+
+    sections:
+      # ===== At a glance =====
+      - type: grid
+        title: At a glance
+        cards:
+          - type: tile
+            entity: climate.thermostat
+            name: Thermostat
+            features:
+              - type: target-temperature
+              - type: climate-hvac-modes
+          - type: tile
+            entity: alarm_control_panel.vivint_smart_hub
+            name: Alarm
+          - type: tile
+            entity: binary_sensor.workday_sensor
+            name: Workday
+          - type: tile
+            entity: person.andrew
+            name: Andrew
+
+      # ===== Rooms / Systems (examples; add more) =====
+      - type: grid
+        title: Lighting
+        columns: 3
+        cards:
+          - type: tile
+            entity: light.living_room
+          - type: tile
+            entity: light.kitchen
+          - type: tile
+            entity: light.office
+
+      # ===== Hue Scenes (same dashboard) =====
+      - type: grid
+        title: Hue Scenes
+        columns: 3
+        cards:
+          # Replace these with your real scene.* entities
+          - type: tile
+            entity: scene.defaults_bright
+            name: Bright
+          - type: tile
+            entity: scene.futuristic_soho
+            name: Soho
+          - type: tile
+            entity: scene.cozy_tropical_twilight
+            name: Tropical Twilight
+          - type: tile
+            entity: scene.daily_unwind
+            name: Unwind
+          - type: tile
+            entity: scene.lush_amber_bloom
+            name: Amber Bloom
+
+      # ===== Climate quick actions =====
+      - type: grid
+        title: Climate Quick Actions
+        columns: 3
+        cards:
+          - type: button
+            name: Cool 70°
+            icon: mdi:snowflake
+            tap_action:
+              action: call-service
+              service: climate.set_hvac_mode
+              target: { entity_id: climate.thermostat }
+              data: { hvac_mode: cool }
+          - type: button
+            name: Heat 70°
+            icon: mdi:fire
+            tap_action:
+              action: call-service
+              service: climate.set_hvac_mode
+              target: { entity_id: climate.thermostat }
+              data: { hvac_mode: heat }
+          - type: button
+            name: Auto 67–69°
+            icon: mdi:autorenew
+            tap_action:
+              action: call-service
+              service: climate.set_hvac_mode
+              target: { entity_id: climate.thermostat }
+              data: { hvac_mode: heat_cool }
+          - type: button
+            name: Set 70°
+            icon: mdi:thermometer
+            tap_action:
+              action: call-service
+              service: climate.set_temperature
+              target: { entity_id: climate.thermostat }
+              data: { temperature: 70 }

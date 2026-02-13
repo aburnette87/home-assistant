@@ -1,0 +1,47 @@
+# -----------------------------------------------------------------------------
+# Script: Away Mode
+# Purpose: Used for the "Run Away Mode Script when I Leave Home" automation.
+# Turns off lights, closes garage, disarms the alarm, and shuts down HVAC.
+# -----------------------------------------------------------------------------
+away_mode:
+  alias: Away Mode
+  description: Used for 'Run Away Mode Script when I Leave Home' automation
+  mode: single
+
+  # -----------------------------------------------------------------------------
+  # Sequence
+  # Executes each action in order
+  # -----------------------------------------------------------------------------
+  sequence:
+
+    # Turn off the vanity lights
+    - service: light.turn_off
+      target:
+        entity_id: light.vanity_lights
+
+    # Turn off all grouped Hue lights
+    - service: light.turn_off
+      target:
+        entity_id: light.all_hue
+
+    # Turn off the ceiling fan light (if on)
+    - service: light.turn_off
+      target:
+        entity_id: light.living_room_ceiling_fan_light
+
+    # Arm the Vivint alarm in Away mode
+    - service: alarm_control_panel.alarm_arm_away
+      target:
+        entity_id: alarm_control_panel.vivint_smart_hub
+
+    # Set Ecobee thermostat to HVAC mode 'off'
+    - service: climate.set_hvac_mode
+      target:
+        entity_id: climate.thermostat
+      data:
+        hvac_mode: "off"
+
+    # Close the garage door (if open)
+    - service: cover.close_cover
+      target:
+        entity_id: cover.garage_door

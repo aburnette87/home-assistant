@@ -1,0 +1,23 @@
+# Applies to all files not defined in other sections
+* text=auto
+
+# Ensure consistent LF line endings for YAML files
+*.yaml  text eol=lf
+*.yml   text eol=lf
+
+# Ensure consistent LF for core config and scripts
+*.json  text eol=lf
+*.txt   text eol=lf
+*.md    text eol=lf
+
+# Treat common config and code files as text with LF
+*.py    text eol=lf
+*.sh    text eol=lf
+*.conf  text eol=lf
+
+# Ignore binary files for EOL normalization
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary

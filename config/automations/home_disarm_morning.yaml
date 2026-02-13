@@ -1,0 +1,35 @@
+# -----------------------------------------------------------------------------
+# Automation: Disarm Home at Dawn
+# Automatically disarms the Vivint security system at the next calculated dawn.
+# -----------------------------------------------------------------------------
+
+- alias: Home Disarm in the Morning
+
+  id: "home_disarm_in_the_morning"  # Unique ID for Home Assistant to manage this automation
+  mode: single         # Prevents overlapping executions
+
+  # -----------------------------------------------------------------------------
+  # Triggers
+  # This automation triggers exactly at the time specified by sensor.sun_next_dawn,
+  # which is updated daily by the sun integration to reflect tomorrow’s dawn.
+  # -----------------------------------------------------------------------------
+  trigger:
+    - platform: time
+      at: sensor.sun_next_dawn
+
+  # -----------------------------------------------------------------------------
+  # Conditions
+  # None specified — the action will always run when triggered.
+  # -----------------------------------------------------------------------------
+  condition: []
+
+  # -----------------------------------------------------------------------------
+  # Actions
+  # Disarms the alarm control panel using a secure alarm code.
+  # -----------------------------------------------------------------------------
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.vivint_smart_hub
+      data:
+        code: !secret alarm_code

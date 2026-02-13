@@ -1,0 +1,250 @@
+# All Hue
+scene.all_hue_energize:
+  entity_picture: /local/hue_scene_icons/energize.png
+
+scene.all_hue_savanna_sunset:
+  entity_picture: /local/hue_scene_icons/savanna_sunset.png
+
+# Main Hue
+scene.defaults_bright:
+  entity_picture: /local/hue_scene_icons/bright.png
+
+scene.defaults_concentrate:
+  entity_picture: /local/hue_scene_icons/concentrate.png
+
+scene.defaults_nightlight:
+  entity_picture: /local/hue_scene_icons/nightlight.png
+
+scene.cozy_savanna_sunset:
+  entity_picture: /local/hue_scene_icons/savanna_sunset.png
+
+scene.futuristic_disturbia:
+  entity_picture: /local/hue_scene_icons/disturbia.png
+
+scene.futuristic_hal:
+  entity_picture: /local/hue_scene_icons/hal.png
+
+scene.futuristic_magneto:
+  entity_picture: /local/hue_scene_icons/magento.png
+
+scene.futuristic_soho:
+  entity_picture: /local/hue_scene_icons/soho.png
+
+scene.futuristic_tyrell:
+  entity_picture: /local/hue_scene_icons/tyrell.png
+
+scene.futuristic_vapor_wave:
+  entity_picture: /local/hue_scene_icons/vapor_wave.png
+
+scene.dreamy_adrift:
+  entity_picture: /local/hue_scene_icons/adrift.png
+
+scene.lush_amber_bloom:
+  entity_picture: /local/hue_scene_icons/amber_bloom.png
+
+scene.pure_amethyst_valley:
+  entity_picture: /local/hue_scene_icons/amethyst_valley.png
+
+scene.serenity_arctic_aurora:
+  entity_picture: /local/hue_scene_icons/arctic_aurora.png
+
+scene.pure_autumn_gold:
+  entity_picture: /local/hue_scene_icons/autumn_gold.png
+
+scene.sunrise_beginnings:
+  entity_picture: /local/hue_scene_icons/beginnings.png
+
+scene.serenity_blood_moon:
+  entity_picture: /local/hue_scene_icons/blood_moon.png
+
+scene.refreshing_blossom:
+  entity_picture: /local/hue_scene_icons/blossom.png
+
+scene.dreamy_blue_lagoon:
+  entity_picture: /local/hue_scene_icons/blue_lagoon.png
+
+scene.lush_blue_planet:
+  entity_picture: /local/hue_scene_icons/blue_planet.png
+
+scene.party_vibes_cancun:
+  entity_picture: /local/hue_scene_icons/cancun.png
+
+scene.party_vibes_chinatown:
+  entity_picture: /local/hue_scene_icons/chinatown.png
+
+scene.defaults_cool_bright:
+  entity_picture: /local/hue_scene_icons/cool_bright.png
+
+scene.refreshing_crocus:
+  entity_picture: /local/hue_scene_icons/crocus.png
+
+scene.defaults_dimmed:
+  entity_picture: /local/hue_scene_icons/dimmed.png
+
+scene.cozy_dreamy_dusk:
+  entity_picture: /local/hue_scene_icons/dreamy_dusk.png
+
+scene.luxurious_emerald_flutter:
+  entity_picture: /local/hue_scene_icons/emerald_flutter.png
+
+scene.peaceful_emerald_isle:
+  entity_picture: /local/hue_scene_icons/emerald_isle.png
+
+scene.party_vibes_fairfax:
+  entity_picture: /local/hue_scene_icons/fairfax.png
+
+scene.sunrise_first_light:
+  entity_picture: /local/hue_scene_icons/first_light.png
+
+scene.lush_forest_adventure:
+  entity_picture: /local/hue_scene_icons/forest_adventure.png
+
+scene.peaceful_frosty_dawn:
+  entity_picture: /local/hue_scene_icons/frosty_dawn.png
+
+scene.serenity_galaxy:
+  entity_picture: /local/hue_scene_icons/galaxy.png
+
+scene.cozy_golden_pond:
+  entity_picture: /local/hue_scene_icons/golden_pond.png
+
+scene.pure_hazy_days:
+  entity_picture: /local/hue_scene_icons/hazy_days.png
+
+scene.cozy_honolulu:
+  entity_picture: /local/hue_scene_icons/honolulu.png
+
+scene.sunrise_horizon:
+  entity_picture: /local/hue_scene_icons/horizon.png
+
+scene.party_vibes_ibiza:
+  entity_picture: /local/hue_scene_icons/ibiza.png
+
+scene.peaceful_lake_mist:
+  entity_picture: /local/hue_scene_icons/lake_mist.png
+
+scene.dreamy_lake_placid:
+  entity_picture: /local/hue_scene_icons/lake_placid.png
+
+scene.lush_lily:
+  entity_picture: /local/hue_scene_icons/lily.png
+
+scene.dreamy_majestic_morning:
+  entity_picture: /local/hue_scene_icons/majestic_morning.png
+
+scene.luxurious_memento:
+  entity_picture: /local/hue_scene_icons/memento.png
+
+scene.lush_meriete:
+  entity_picture: /local/hue_scene_icons/meriete.png
+
+scene.party_vibes_miami:
+  entity_picture: /local/hue_scene_icons/miami.png
+
+scene.pure_midsummer_sun:
+  entity_picture: /local/hue_scene_icons/midsummer_sun.png
+
+scene.pure_midwinter:
+  entity_picture: /local/hue_scene_icons/midwinter.png
+
+scene.pure_misty_ridge:
+  entity_picture: /local/hue_scene_icons/misty_ridge.png
+
+scene.serenity_moonlight:
+  entity_picture: /local/hue_scene_icons/moonlight.png
+
+scene.party_vibes_motown:
+  entity_picture: /local/hue_scene_icons/motown.png
+
+scene.peaceful_mountain_breeze:
+  entity_picture: /local/hue_scene_icons/mountain_breeze.png
+
+scene.refreshing_narcissa:
+  entity_picture: /local/hue_scene_icons/narcissa.png
+
+scene.serenity_nebula:
+  entity_picture: /local/hue_scene_icons/nebula.png
+
+scene.peaceful_ocean_dawn:
+  entity_picture: /local/hue_scene_icons/ocean_dawn.png
+
+scene.lush_orange_fields:
+  entity_picture: /local/hue_scene_icons/orange_fields.png
+
+scene.party_vibes_osaka:
+  entity_picture: /local/hue_scene_icons/osaka.png
+
+scene.lush_painted_sky:
+  entity_picture: /local/hue_scene_icons/painted_sky.png
+
+scene.dreamy_palm_beach:
+  entity_picture: /local/hue_scene_icons/palm_beach.png
+
+scene.dreamy_pensive:
+  entity_picture: /local/hue_scene_icons/pensive.png
+
+scene.refreshing_precious:
+  entity_picture: /local/hue_scene_icons/precious.png
+
+scene.defaults_read:
+  entity_picture: /local/hue_scene_icons/read.png
+
+scene.defaults_relax:
+  entity_picture: /local/hue_scene_icons/relax.png
+
+scene.luxurious_resplendent:
+  entity_picture: /local/hue_scene_icons/resplendant.png
+
+scene.defaults_rest:
+  entity_picture: /local/hue_scene_icons/rest.png
+
+scene.party_vibes_rio:
+  entity_picture: /local/hue_scene_icons/rio.png
+
+scene.cozy_rolling_hills:
+  entity_picture: /local/hue_scene_icons/rolling_hills.png
+
+scene.cozy_ruby_glow:
+  entity_picture: /local/hue_scene_icons/ruby_glow.png
+
+scene.luxurious_scarlet_dream:
+  entity_picture: /local/hue_scene_icons/scarlet_dream.png
+
+scene.peaceful_spring_blossom:
+  entity_picture: /local/hue_scene_icons/spring_blossom.png
+
+scene.pure_spring_lake:
+  entity_picture: /local/hue_scene_icons/spring_lake.png
+
+scene.serenity_starlight:
+  entity_picture: /local/hue_scene_icons/starlight.png
+
+scene.dreamy_still_waters:
+  entity_picture: /local/hue_scene_icons/still_waters.png
+
+scene.peaceful_sunday_morning:
+  entity_picture: /local/hue_scene_icons/sunday_morning.png
+
+scene.dreamy_sundown:
+  entity_picture: /local/hue_scene_icons/sundown.png
+
+scene.sunrise_sunflare:
+  entity_picture: /local/hue_scene_icons/sunflare.png
+
+scene.party_vibes_tokyo:
+  entity_picture: /local/hue_scene_icons/tokyo.png
+
+scene.cozy_tropical_twilight:
+  entity_picture: /local/hue_scene_icons/tropical_twilight.png
+
+scene.sunrise_valley_dawn:
+  entity_picture: /local/hue_scene_icons/valley_dawn.png
+
+scene.cozy_warm_embrace:
+  entity_picture: /local/hue_scene_icons/warm_embrace.png
+
+scene.lush_winter_beauty:
+  entity_picture: /local/hue_scene_icons/winter_beauty.png
+
+scene.pure_winter_mountain:
+  entity_picture: /local/hue_scene_icons/winter_mountain.png

@@ -1,0 +1,45 @@
+# --- Secrets / sensitive ---
+config/secrets.yaml
+config/**/secrets.yaml
+config/.google.token
+config/production_auth.json
+
+# --- Private keys / certs ---
+config/**/*.key
+config/**/*.pem
+config/**/*.p12
+config/**/*.pfx
+config/**/*.csr
+config/**/*.crt
+
+# --- Home Assistant internal state ---
+config/.storage/
+config/.cloud/
+config/.uuid
+config/.HA_VERSION
+
+# --- Databases ---
+config/*.db
+config/*.db-shm
+config/*.db-wal
+config/*.sqlite
+config/zigbee.db*
+config/home-assistant_v2.db*
+
+# --- Logs ---
+config/home-assistant.log*
+config/*.log
+config/OZW_Log.txt
+
+# --- Generated / cache ---
+config/deps/
+config/__pycache__/
+config/tts/
+
+# --- ESPHome: keep YAMLs, ignore build/cache ---
+config/esphome/.esphome/
+
+# --- Local editor / OS noise ---
+.vscode/
+.DS_Store
+Thumbs.db

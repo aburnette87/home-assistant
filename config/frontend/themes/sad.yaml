@@ -1,0 +1,6 @@
+sad:
+  primary-color: steelblue
+  accent-color: darkred
+  modes:
+    dark:
+      secondary-text-color: slategray
