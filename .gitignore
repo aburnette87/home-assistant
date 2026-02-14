@@ -5,6 +5,13 @@ secrets.yaml
 .ha_run.lock
 .ssh/
 
+# Home Assistant runtime marker
+.HA_VERSION
+
+# Local safety backups / experiments
+.git_old_backup/
+git/
+
 # DBs
 *.db
 *.db-shm
