@@ -4,6 +4,8 @@
 secrets.yaml
 .ha_run.lock
 .ssh/
+__pycache__
+*.pyc
 
 # Home Assistant runtime marker
 .HA_VERSION
