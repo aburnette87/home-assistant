@@ -2,18 +2,18 @@
 # Automation: Fan on if living room warm and I'm home
 # Turns on the living room ceiling fan at full speed when the thermostat
 # temperature goes above 70°F, but only if:
-# - You are home, and
+# - I am home, and
 # - The fan is currently off
 # -----------------------------------------------------------------------------
 
 - alias: Fan on if Living Room Warm and I'm Home
 
-  id: "fan_on_if_living_room_warm_and_im_home"  # Unique identifier managed by Home Assistant
-  mode: single         # Prevents multiple overlapping executions
+  id: "fan_on_if_living_room_warm_and_im_home"
+  mode: single
 
   # -----------------------------------------------------------------------------
   # Triggers
-  # Activates when the Ecobee thermostat reports a temperature above 70°F.
+  # Activates when the thermostat reports a temperature above 70°F.
   # -----------------------------------------------------------------------------
   trigger:
     - platform: numeric_state
@@ -22,7 +22,7 @@
 
   # -----------------------------------------------------------------------------
   # Conditions
-  # A. You must be home (based on person.andrew state).
+  # A. I must be home.
   # B. The fan must currently be off.
   # -----------------------------------------------------------------------------
   condition:

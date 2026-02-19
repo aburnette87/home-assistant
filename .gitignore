@@ -1,38 +1,32 @@
-# HA runtime state / secrets
-.storage/
-.cloud/
-secrets.yaml
+# Ignore specific files
 .ha_run.lock
-.ssh/
+secrets.yaml
+
+# Ignore broad directories
 __pycache__
-*.pyc
+.cloud
+.ssh
+.storage
+blueprints/*/homeassistant
+custom_components
+deps
+image
+themes
+tts
+unused
+www/community
 
-# Home Assistant runtime marker
-.HA_VERSION
-
-# Local safety backups / experiments
-.git_old_backup/
-git/
-
-# DBs
+# Ignore specific file extensions
+*.crt
+*.csr
 *.db
 *.db-shm
 *.db-wal
-*.sqlite
-
-# Logs
-home-assistant.log*
-*.log
-OZW_Log.txt
-
-# Generated/cache
-deps/
-tts/
-
-# Keys/certs
-*.pem
 *.key
-*.crt
-*.csr
+*.log
+*.log.*
 *.p12
+*.pem
 *.pfx
+*.pyc
+*.sqlite
