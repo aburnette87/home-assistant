@@ -1,11 +1,7 @@
 homeassistant:
-  name: "Bonanza"
-  customize: !include_dir_merge_named customize/entities/
-  customize_glob: !include customize/customize_glob.yaml
-
+  # Bootstraps the Home Assistant core configuration
   packages: !include_dir_named integrations
 
-default_config:
 
 # ---------------- Dashboards ----------------
 lovelace:
@@ -32,12 +28,6 @@ lovelace:
       icon: hue:bulb-group-classic-4-alt
       show_in_sidebar: true
       require_admin: false
-
-# ---------------- Networking ------------------
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 192.168.68.20
 
 # ---------------- Split config ----------------
 automation: !include_dir_merge_list automations/
