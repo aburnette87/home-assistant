@@ -1,0 +1,3 @@
+name: 'Romantic: Glitz and glam'
+entities:
+  input_boolean.scene_romantic_glitz_and_glam: true

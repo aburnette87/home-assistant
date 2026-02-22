@@ -1,0 +1,3 @@
+name: 'Romantic: Promise'
+entities:
+  input_boolean.scene_romantic_promise: true

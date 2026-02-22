@@ -1,0 +1,3 @@
+name: 'Serenity: Blood moon'
+entities:
+  input_boolean.scene_serenity_blood_moon: true
