@@ -3,31 +3,30 @@
 # When you leave the 'home' zone, this automation calls the 'away_mode' script.
 # -----------------------------------------------------------------------------
 
-- alias: Away Mode Script Run when I Leave Home
+alias: Away Mode Script Run when I Leave Home
+id: "away_mode_script_run_when_i_leave_home"  # Unique ID for Home Assistant tracking and UI editing
+description: "Uses 'Away Mode' script"
+mode: single          # Prevents overlapping if trigger happens again quickly
 
-  id: "away_mode_script_run_when_i_leave_home"  # Unique ID for Home Assistant tracking and UI editing
-  description: "Uses 'Away Mode' script"
-  mode: single          # Prevents overlapping if trigger happens again quickly
+# -----------------------------------------------------------------------------
+# Triggers
+# Fires when person.andrew leaves the home zone.
+# -----------------------------------------------------------------------------
+trigger:
+  - platform: zone
+    entity_id: person.andrew
+    zone: zone.home
+    event: leave
 
-  # -----------------------------------------------------------------------------
-  # Triggers
-  # Fires when person.andrew leaves the home zone.
-  # -----------------------------------------------------------------------------
-  trigger:
-    - platform: zone
-      entity_id: person.andrew
-      zone: zone.home
-      event: leave
+# -----------------------------------------------------------------------------
+# Conditions
+# None specified — will always run when the trigger is met.
+# -----------------------------------------------------------------------------
+condition: []
 
-  # -----------------------------------------------------------------------------
-  # Conditions
-  # None specified — will always run when the trigger is met.
-  # -----------------------------------------------------------------------------
-  condition: []
-
-  # -----------------------------------------------------------------------------
-  # Actions
-  # Executes the away_mode script.
-  # -----------------------------------------------------------------------------
-  action:
-    - service: script.away_mode
+# -----------------------------------------------------------------------------
+# Actions
+# Executes the away_mode script.
+# -----------------------------------------------------------------------------
+action:
+  - service: script.away_mode

@@ -2,35 +2,7 @@ homeassistant:
   # Bootstraps the Home Assistant core configuration
   packages: !include_dir_named integrations
 
-
-# ---------------- Dashboards ----------------
-lovelace:
-  resource_mode: yaml
-  resources:
-    - url: /hacsfiles/hass-hue-icons/hass-hue-icons.js
-      type: module
-    - url: /hacsfiles/lovelace-hue-like-light-card/hue-like-light-card.js
-      type: module
-
-  dashboards:
-    lovelace:
-      mode: yaml
-      filename: dashboards/ui-lovelace.yaml
-      title: Home
-      icon: mdi:home
-      show_in_sidebar: true
-      require_admin: false
-
-    lovelace-lights:
-      mode: yaml
-      filename: dashboards/hue-control.yaml
-      title: Hue Control
-      icon: hue:bulb-group-classic-4-alt
-      show_in_sidebar: true
-      require_admin: false
-
 # ---------------- Split config ----------------
-automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 template: !include_dir_merge_list templates/
