@@ -1,0 +1,3 @@
+name: 'Futuristic: Soho'
+entities:
+  input_boolean.scene_futuristic_soho: true

@@ -1,0 +1,4 @@
+name: All Hue Savanna sunset
+icon: mdi:weather-sunset
+entities:
+  input_boolean.scene_all_hue_savanna_sunset: true

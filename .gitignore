@@ -11,7 +11,6 @@ blueprints/*/homeassistant
 custom_components
 deps
 image
-themes
 tts
 unused
 www/community

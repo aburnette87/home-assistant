@@ -4,18 +4,18 @@
 # based on the input time and workday conditions.
 # -----------------------------------------------------------------------------
 
-- alias: Primary Bedroom Left Nightstand Light on in Morning
-  id: "primary_dedroom_left_nightstand_light_on_in_morning"
+alias: Primary Bedroom Left Nightstand Light on in Morning
+id: "primary_bedroom_left_nightstand_light_on_in_morning"
 
-  # -----------------------------------------------------------------------------
-  # Blueprint Usage
-  # This automation uses the 'parabolic_alarm' blueprint by steku.
-  # Inputs specify time, day condition, script to run, and target light.
-  # -----------------------------------------------------------------------------
-  use_blueprint:
-    path: steku/parabolic_alarm.yaml
-    input:
-      alarm_start_time: input_datetime.time
-      workday_sensor: binary_sensor.workday_sensor
-      alarm_script: script.light_sunrise
-      target_light: light.primary_bedroom_left_nightstand_light
+# -----------------------------------------------------------------------------
+# Blueprint Usage
+# This automation uses the 'parabolic_alarm' blueprint by steku.
+# Inputs specify time, day condition, script to run, and target light.
+# -----------------------------------------------------------------------------
+use_blueprint:
+  path: steku/parabolic_alarm.yaml
+  input:
+    alarm_start_time: input_datetime.time
+    workday_sensor: binary_sensor.workday_sensor
+    alarm_script: script.light_sunrise
+    target_light: light.primary_bedroom_left_nightstand_light

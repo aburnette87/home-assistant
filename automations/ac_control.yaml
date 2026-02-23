@@ -1,144 +1,144 @@
 # -----------------------------------------------------------------------------
 # EcoNet | Arrival / Leave-Work Pre-Conditioning + Sleep Mode
 # -----------------------------------------------------------------------------
-- alias: EcoNet | Arrival + Workday Pre-Conditioning + Sleep
-  id: econet_arrival_workday_precool_sleep
-  mode: single
+alias: EcoNet | Arrival + Workday Pre-Conditioning + Sleep
+id: econet_arrival_workday_precool_sleep
+mode: single
 
-  variables:
-    climate_entity: climate.thermostat # <-- EcoNet climate
-    workday_entity: binary_sensor.workday_sensor # <-- workday sensor
-    # alarm_entity: alarm_control_panel.vivint_smart_hub
-    current_temp: "{{ state_attr(climate_entity, 'current_temperature')|float(0) }}"
-    is_off: "{{ is_state(climate_entity, 'off') }}"
-    is_workday: "{{ is_state(workday_entity, 'on') }}"
-    after_11pm: "{{ now().hour >= 23 }}"
-    target_mid: 70
+variables:
+  climate_entity: climate.thermostat # <-- EcoNet climate
+  workday_entity: binary_sensor.workday_sensor # <-- workday sensor
+  # alarm_entity: alarm_control_panel.vivint_smart_hub
+  current_temp: "{{ state_attr(climate_entity, 'current_temperature')|float(0) }}"
+  is_off: "{{ is_state(climate_entity, 'off') }}"
+  is_workday: "{{ is_state(workday_entity, 'on') }}"
+  after_11pm: "{{ now().hour >= 23 }}"
+  target_mid: 70
 
-  trigger:
-    # 1) "am home" (fires on any change *to* home)
-    - id: am_home
-      platform: state
-      entity_id: person.andrew
-      to: "home"
+trigger:
+  # 1) "am home" (fires on any change *to* home)
+  - id: am_home
+    platform: state
+    entity_id: person.andrew
+    to: "home"
 
-    # 2) arrive home: explicit not_home -> home edge
-    - id: arrive_home
-      platform: state
-      entity_id: person.andrew
-      from: "not_home"
-      to: "home"
+  # 2) arrive home: explicit not_home -> home edge
+  - id: arrive_home
+    platform: state
+    entity_id: person.andrew
+    from: "not_home"
+    to: "home"
 
-    # 3) pre-cool/heat: leave work (only relevant on workdays)
-    - id: leave_work
-      platform: zone
-      entity_id: person.andrew
-      zone: zone.work
-      event: leave
+  # 3) pre-cool/heat: leave work (only relevant on workdays)
+  - id: leave_work
+    platform: zone
+    entity_id: person.andrew
+    zone: zone.work
+    event: leave
 
-    # Sleep mode can’t happen without a trigger; add two light ones:
+  # Sleep mode can’t happen without a trigger; add two light ones:
 
-    # 4) Arm Stay after 11pm
-    - id: arm_stay_after_11
-      platform: state
-      entity_id: alarm_control_panel.vivint_smart_hub
-      to: armed_stay
+  # 4) Arm Stay after 11pm
+  - id: arm_stay_after_11
+    platform: state
+    entity_id: alarm_control_panel.vivint_smart_hub
+    to: armed_stay
 
-    # 5) 11:00 PM tick (if already armed_stay)
-    - id: eleven_pm_tick
-      platform: time
-      at: "23:00:00"
+  # 5) 11:00 PM tick (if already armed_stay)
+  - id: eleven_pm_tick
+    platform: time
+    at: "23:00:00"
 
-  # Global gate:
-  # 0) A/C is in an "off" state  (sleep mode is allowed regardless)
-  condition:
-    - condition: or
-      conditions:
-        # Sleep mode branch exempt from the "off" requirement
-        - condition: template
-          value_template: >
-            {{ trigger.id in ['arm_stay_after_11','eleven_pm_tick'] }}
-        # Otherwise require HVAC off
-        - condition: template
-          value_template: "{{ is_off }}"
+# Global gate:
+# 0) A/C is in an "off" state  (sleep mode is allowed regardless)
+condition:
+  - condition: or
+    conditions:
+      # Sleep mode branch exempt from the "off" requirement
+      - condition: template
+        value_template: >
+          {{ trigger.id in ['arm_stay_after_11','eleven_pm_tick'] }}
+      # Otherwise require HVAC off
+      - condition: template
+        value_template: "{{ is_off }}"
 
-    # Presence/trigger logic:
-    # 1) (I am home) OR (arrive_home) OR (leave_work)
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: person.andrew
-          state: "home"
-        - condition: template
-          value_template: "{{ trigger.id == 'arrive_home' }}"
-        - condition: template
-          value_template: "{{ trigger.id == 'leave_work' }}"
+  # Presence/trigger logic:
+  # 1) (I am home) OR (arrive_home) OR (leave_work)
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: person.andrew
+        state: "home"
+      - condition: template
+        value_template: "{{ trigger.id == 'arrive_home' }}"
+      - condition: template
+        value_template: "{{ trigger.id == 'leave_work' }}"
 
-  action:
-    - choose:
-        # -------------------------------------------------------------------
-        # SLEEP MODE:
-        # WHEN alarm is armed_stay AND time is 11:00 PM or later
-        # THEN set mode heat_cool and band 67–69
-        # -------------------------------------------------------------------
-        - conditions:
-            - condition: state
-              entity_id: alarm_control_panel.vivint_smart_hub
-              state: armed_stay
-            - condition: template
-              value_template: "{{ after_11pm }}"
-          sequence:
-            - service: climate.set_hvac_mode
-              target: { entity_id: "{{ climate_entity }}" }
-              data: { hvac_mode: heat_cool }
-            - service: climate.set_temperature
-              target: { entity_id: "{{ climate_entity }}" }
-              data:
-                target_temp_high: 69
-                target_temp_low: 67
+action:
+  - choose:
+      # -------------------------------------------------------------------
+      # SLEEP MODE:
+      # WHEN alarm is armed_stay AND time is 11:00 PM or later
+      # THEN set mode heat_cool and band 67–69
+      # -------------------------------------------------------------------
+      - conditions:
+          - condition: state
+            entity_id: alarm_control_panel.vivint_smart_hub
+            state: armed_stay
+          - condition: template
+            value_template: "{{ after_11pm }}"
+        sequence:
+          - service: climate.set_hvac_mode
+            target: { entity_id: "{{ climate_entity }}" }
+            data: { hvac_mode: heat_cool }
+          - service: climate.set_temperature
+            target: { entity_id: "{{ climate_entity }}" }
+            data:
+              target_temp_high: 69
+              target_temp_low: 67
 
-        # -------------------------------------------------------------------
-        # LEAVING WORK PRE-COOL (workday only):
-        # IF temp > 70 AND mode is off -> cool to 70
-        # -------------------------------------------------------------------
-        - conditions:
-            - condition: template
-              value_template: "{{ trigger.id == 'leave_work' }}"
-            - condition: template
-              value_template: "{{ is_workday }}"
-            - condition: template
-              value_template: "{{ is_off }}"
-            - condition: template
-              value_template: "{{ current_temp > target_mid }}"
-          sequence:
-            - service: climate.set_hvac_mode
-              target: { entity_id: "{{ climate_entity }}" }
-              data: { hvac_mode: cool }
-            - delay: "00:00:02"
-            - service: climate.set_temperature
-              target: { entity_id: "{{ climate_entity }}" }
-              data: { temperature: "{{ target_mid }}" }
+      # -------------------------------------------------------------------
+      # LEAVING WORK PRE-COOL (workday only):
+      # IF temp > 70 AND mode is off -> cool to 70
+      # -------------------------------------------------------------------
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.id == 'leave_work' }}"
+          - condition: template
+            value_template: "{{ is_workday }}"
+          - condition: template
+            value_template: "{{ is_off }}"
+          - condition: template
+            value_template: "{{ current_temp > target_mid }}"
+        sequence:
+          - service: climate.set_hvac_mode
+            target: { entity_id: "{{ climate_entity }}" }
+            data: { hvac_mode: cool }
+          - delay: "00:00:02"
+          - service: climate.set_temperature
+            target: { entity_id: "{{ climate_entity }}" }
+            data: { temperature: "{{ target_mid }}" }
 
-        # -------------------------------------------------------------------
-        # LEAVING WORK PRE-HEAT (workday only):
-        # IF temp < 70 AND mode is off -> heat to 70
-        # -------------------------------------------------------------------
-        - conditions:
-            - condition: template
-              value_template: "{{ trigger.id == 'leave_work' }}"
-            - condition: template
-              value_template: "{{ is_workday }}"
-            - condition: template
-              value_template: "{{ is_off }}"
-            - condition: template
-              value_template: "{{ current_temp < target_mid }}"
-          sequence:
-            - service: climate.set_hvac_mode
-              target: { entity_id: "{{ climate_entity }}" }
-              data: { hvac_mode: heat }
-            - delay: "00:00:02"
-            - service: climate.set_temperature
-              target: { entity_id: "{{ climate_entity }}" }
-              data: { temperature: "{{ target_mid }}" }
+      # -------------------------------------------------------------------
+      # LEAVING WORK PRE-HEAT (workday only):
+      # IF temp < 70 AND mode is off -> heat to 70
+      # -------------------------------------------------------------------
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.id == 'leave_work' }}"
+          - condition: template
+            value_template: "{{ is_workday }}"
+          - condition: template
+            value_template: "{{ is_off }}"
+          - condition: template
+            value_template: "{{ current_temp < target_mid }}"
+        sequence:
+          - service: climate.set_hvac_mode
+            target: { entity_id: "{{ climate_entity }}" }
+            data: { hvac_mode: heat }
+          - delay: "00:00:02"
+          - service: climate.set_temperature
+            target: { entity_id: "{{ climate_entity }}" }
+            data: { temperature: "{{ target_mid }}" }
 
-      default: []
+    default: []

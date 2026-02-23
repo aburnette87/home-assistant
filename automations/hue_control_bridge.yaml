@@ -2,1375 +2,1375 @@
 # Automation: Bridge Hue-Like Card scenes to Nilsreiter script
 # Calls your script with the proper scene name when a proxy scene is tapped.
 # -----------------------------------------------------------------------------
-- alias: Bridge Hue Card → Nilsreiter
-  id: bridge_hue_card_to_nilsreiter
-  mode: single
+alias: Bridge Hue Card → Nilsreiter
+id: bridge_hue_card_to_nilsreiter
+mode: single
 
-  trigger:
-    - platform: event
-      event_type: call_service
-      event_data:
-        domain: scene
-        service: turn_on
+trigger:
+  - platform: event
+    event_type: call_service
+    event_data:
+      domain: scene
+      service: turn_on
 
-  variables:
-    eid: >-
-      {% set sd = trigger.event.data.service_data %}
-      {% if sd is mapping %}
-        {% if sd.entity_id is string %}{{ sd.entity_id }}
-        {% elif sd.entity_id is iterable %}{{ sd.entity_id[0] }}
-        {% else %}{{ '' }}{% endif %}
+variables:
+  eid: >-
+    {% set sd = trigger.event.data.service_data %}
+    {% if sd is mapping %}
+      {% if sd.entity_id is string %}{{ sd.entity_id }}
+      {% elif sd.entity_id is iterable %}{{ sd.entity_id[0] }}
       {% else %}{{ '' }}{% endif %}
-
-  condition:
-    - condition: template
-      value_template: >-
-        {{ eid in [
-          'scene.all_hue_energize',
-          'scene.all_hue_savanna_sunset',
-          'scene.cozy_dreamy_dusk',
-          'scene.cozy_golden_pond',
-          'scene.cozy_honolulu',
-          'scene.cozy_rolling_hills',
-          'scene.cozy_ruby_glow',
-          'scene.cozy_savanna_sunset',
-          'scene.cozy_tropical_twilight',
-          'scene.cozy_warm_embrace',
-          'scene.daily_arise',
-          'scene.daily_nighttime',
-          'scene.daily_shine',
-          'scene.daily_sleepy',
-          'scene.daily_storybook',
-          'scene.daily_unwind',
-          'scene.defaults_bright',
-          'scene.defaults_concentrate',
-          'scene.defaults_cool_bright',
-          'scene.defaults_dimmed',
-          'scene.defaults_energize',
-          'scene.defaults_nightlight',
-          'scene.defaults_read',
-          'scene.defaults_relax',
-          'scene.defaults_rest',
-          'scene.dreamy_adrift',
-          'scene.dreamy_blue_lagoon',
-          'scene.dreamy_lake_placid',
-          'scene.dreamy_majestic_morning',
-          'scene.dreamy_palm_beach',
-          'scene.dreamy_pensive',
-          'scene.dreamy_still_waters',
-          'scene.dreamy_sundown',
-          'scene.futuristic_disturbia',
-          'scene.futuristic_hal',
-          'scene.futuristic_magneto',
-          'scene.futuristic_soho',
-          'scene.futuristic_tyrell',
-          'scene.futuristic_vapor_wave',
-          'scene.halloween_glowing_grins',
-          'scene.halloween_hocus_pocus',
-          'scene.halloween_pandemonium',
-          'scene.halloween_phantom',
-          'scene.halloween_spellbound',
-          'scene.halloween_toil_and_trouble',
-          'scene.halloween_trick_or_treat',
-          'scene.halloween_witching_hour',
-          'scene.lush_amber_bloom',
-          'scene.lush_blue_planet',
-          'scene.lush_forest_adventure',
-          'scene.lush_lily',
-          'scene.lush_meriete',
-          'scene.lush_orange_fields',
-          'scene.lush_painted_sky',
-          'scene.lush_winter_beauty',
-          'scene.luxurious_emerald_flutter',
-          'scene.luxurious_memento',
-          'scene.luxurious_resplendent',
-          'scene.luxurious_scarlet_dream',
-          'scene.party_vibes_cancun',
-          'scene.party_vibes_chinatown',
-          'scene.party_vibes_fairfax',
-          'scene.party_vibes_ibiza',
-          'scene.party_vibes_miami',
-          'scene.party_vibes_motown',
-          'scene.party_vibes_osaka',
-          'scene.party_vibes_rio',
-          'scene.party_vibes_tokyo',
-          'scene.peaceful_emerald_isle',
-          'scene.peaceful_frosty_dawn',
-          'scene.peaceful_lake_mist',
-          'scene.peaceful_mountain_breeze',
-          'scene.peaceful_ocean_dawn',
-          'scene.peaceful_spring_blossom',
-          'scene.peaceful_sunday_morning',
-          'scene.pure_amethyst_valley',
-          'scene.pure_autumn_gold',
-          'scene.pure_hazy_days',
-          'scene.pure_midsummer_sun',
-          'scene.pure_midwinter',
-          'scene.pure_misty_ridge',
-          'scene.pure_spring_lake',
-          'scene.pure_winter_mountain',
-          'scene.race_day_bahrain',
-          'scene.race_day_miami',
-          'scene.race_day_sao_paulo',
-          'scene.race_day_silverstone',
-          'scene.race_day_singapore',
-          'scene.race_day_suzuka',
-          'scene.race_day_zandvoort',
-          'scene.refreshing_blossom',
-          'scene.refreshing_crocus',
-          'scene.refreshing_narcissa',
-          'scene.refreshing_precious',
-          'scene.romantic_city_of_love',
-          'scene.romantic_glitz_and_glam',
-          'scene.romantic_lovebirds',
-          'scene.romantic_promise',
-          'scene.romantic_ruby_romance',
-          'scene.romantic_smitten',
-          'scene.romantic_sunset_allure',
-          'scene.serenity_arctic_aurora',
-          'scene.serenity_blood_moon',
-          'scene.serenity_galaxy',
-          'scene.serenity_moonlight',
-          'scene.serenity_nebula',
-          'scene.serenity_starlight',
-          'scene.sunrise_beginnings',
-          'scene.sunrise_first_light',
-          'scene.sunrise_horizon',
-          'scene.sunrise_sunflare',
-          'scene.sunrise_valley_dawn',
-          'scene.winter_holidays_color_burst',
-          'scene.winter_holidays_crystalline',
-          'scene.winter_holidays_festive_fun',
-          'scene.winter_holidays_golden_star',
-          'scene.winter_holidays_jolly',
-          'scene.winter_holidays_nutcracker',
-          'scene.winter_holidays_rosy_sparkle',
-          'scene.winter_holidays_silent_night',
-          'scene.winter_holidays_snow_sparkle',
-          'scene.winter_holidays_under_the_tree'
-
-        ] }}
-
-  action:
-    - choose:
-        # -------- All Hue → script.all_hue_scenes --------
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.all_hue_energize' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.all_hue_scenes }
-              data:
-                variables:
-                  scene: "Energize"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.all_hue_savanna_sunset' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.all_hue_scenes }
-              data:
-                variables:
-                  scene: "Savanna sunset"
-
-        # -------- Main Hue → script.main_hue_scenes --------
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_savanna_sunset' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Savanna sunset"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_bright' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Bright"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_concentrate' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Concentrate"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_nightlight' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Nightlight"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.futuristic_disturbia' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Futuristic: Disturbia"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.futuristic_hal' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Futuristic: Hal"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.futuristic_magneto' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Futuristic: Magneto"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.futuristic_soho' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Futuristic: Soho"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.futuristic_tyrell' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Futuristic: Tyrell"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.futuristic_vapor_wave' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Futuristic: Vapor wave"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_dreamy_dusk' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Dreamy dusk"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_golden_pond' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Golden pond"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_honolulu' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Honolulu"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_rolling_hills' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Rolling hills"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_ruby_glow' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Ruby glow"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_tropical_twilight' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Tropical twilight"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.cozy_warm_embrace' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Cozy: Warm embrace"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.daily_arise' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Daily: Arise"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.daily_nighttime' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Daily: Nighttime"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.daily_shine' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Daily: Shine"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.daily_sleepy' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Daily: Sleepy"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.daily_storybook' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Daily: Storybook"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.daily_unwind' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Daily: Unwind"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_cool_bright' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Cool bright"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_dimmed' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Dimmed"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_energize' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Energize"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_read' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Read"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_relax' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Relax"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.defaults_rest' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Defaults: Rest"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_adrift' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Adrift"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_blue_lagoon' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Blue lagoon"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_lake_placid' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Lake Placid"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_majestic_morning' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Majestic morning"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_palm_beach' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Palm Beach"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_pensive' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Pensive"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_still_waters' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Still waters"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.dreamy_sundown' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Dreamy: Sundown"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_glowing_grins' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Glowing grins"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_hocus_pocus' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Hocus pocus"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_pandemonium' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Pandemonium"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_phantom' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Phantom"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_spellbound' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Spellbound"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_toil_and_trouble' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Toil and trouble"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_trick_or_treat' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Trick or treat"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.halloween_witching_hour' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Halloween: Witching hour"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_amber_bloom' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Amber bloom"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_blue_planet' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Blue planet"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_forest_adventure' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Forest adventure"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_lily' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Lily"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_meriete' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Meriete"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_orange_fields' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Orange fields"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_painted_sky' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Painted sky"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.lush_winter_beauty' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Lush: Winter beauty"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.luxurious_emerald_flutter' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Luxurious: Emerald flutter"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.luxurious_memento' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Luxurious: Memento"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.luxurious_resplendent' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Luxurious: Resplendent"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.luxurious_scarlet_dream' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Luxurious: Scarlet dream"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_cancun' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Cancun"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_chinatown' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Chinatown"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_fairfax' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Fairfax"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_ibiza' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Ibiza"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_miami' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Miami"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_motown' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Motown"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_osaka' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Osaka"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_rio' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Rio"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.party_vibes_tokyo' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Party vibes: Tokyo"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_emerald_isle' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Emerald isle"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_frosty_dawn' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Frosty dawn"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_lake_mist' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Lake mist"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_mountain_breeze' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Mountain breeze"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_ocean_dawn' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Ocean dawn"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_spring_blossom' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Spring blossom"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.peaceful_sunday_morning' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Peaceful: Sunday morning"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_amethyst_valley' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Amethyst valley"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_autumn_gold' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Autumn gold"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_hazy_days' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Hazy days"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_midsummer_sun' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Midsummer sun"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_midwinter' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Midwinter"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_misty_ridge' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Misty ridge"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_spring_lake' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Spring lake"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.pure_winter_mountain' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Pure: Winter mountain"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_bahrain' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: Bahrain"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_miami' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: Miami"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_silverstone' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: Silverstone"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_singapore' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: Singapore"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_suzuka' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: Suzuka"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_sao_paulo' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: São Paulo"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.race_day_zandvoort' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Race Day: Zandvoort"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.refreshing_blossom' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Refreshing: Blossom"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.refreshing_crocus' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Refreshing: Crocus"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.refreshing_narcissa' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Refreshing: Narcissa"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.refreshing_precious' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Refreshing: Precious"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_city_of_love' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: City of love"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_glitz_and_glam' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: Glitz and glam"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_lovebirds' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: Lovebirds"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_promise' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: Promise"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_ruby_romance' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: Ruby romance"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_smitten' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: Smitten"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.romantic_sunset_allure' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Romantic: Sunset allure"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.serenity_arctic_aurora' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Serenity: Arctic aurora"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.serenity_blood_moon' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Serenity: Blood moon"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.serenity_galaxy' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Serenity: Galaxy"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.serenity_moonlight' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Serenity: Moonlight"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.serenity_nebula' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Serenity: Nebula"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.serenity_starlight' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Serenity: Starlight"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.sunrise_beginnings' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Sunrise: Beginnings"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.sunrise_first_light' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Sunrise: First light"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.sunrise_horizon' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Sunrise: Horizon"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.sunrise_sunflare' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Sunrise: Sunflare"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.sunrise_valley_dawn' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Sunrise: Valley dawn"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_color_burst' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Color burst"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_crystalline' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Crystalline"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_festive_fun' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Festive fun"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_golden_star' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Golden star"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_jolly' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Jolly"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_nutcracker' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Nutcracker"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_rosy_sparkle' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Rosy sparkle"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_silent_night' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Silent night"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_snow_sparkle' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Snow sparkle"
-
-        - conditions:
-            - condition: template
-              value_template: "{{ eid == 'scene.winter_holidays_under_the_tree' }}"
-          sequence:
-            - service: script.turn_on
-              target: { entity_id: script.main_hue_scenes }
-              data:
-                variables:
-                  scene: "Winter holidays: Under the tree"
+    {% else %}{{ '' }}{% endif %}
+
+condition:
+  - condition: template
+    value_template: >-
+      {{ eid in [
+        'scene.all_hue_energize',
+        'scene.all_hue_savanna_sunset',
+        'scene.cozy_dreamy_dusk',
+        'scene.cozy_golden_pond',
+        'scene.cozy_honolulu',
+        'scene.cozy_rolling_hills',
+        'scene.cozy_ruby_glow',
+        'scene.cozy_savanna_sunset',
+        'scene.cozy_tropical_twilight',
+        'scene.cozy_warm_embrace',
+        'scene.daily_arise',
+        'scene.daily_nighttime',
+        'scene.daily_shine',
+        'scene.daily_sleepy',
+        'scene.daily_storybook',
+        'scene.daily_unwind',
+        'scene.defaults_bright',
+        'scene.defaults_concentrate',
+        'scene.defaults_cool_bright',
+        'scene.defaults_dimmed',
+        'scene.defaults_energize',
+        'scene.defaults_nightlight',
+        'scene.defaults_read',
+        'scene.defaults_relax',
+        'scene.defaults_rest',
+        'scene.dreamy_adrift',
+        'scene.dreamy_blue_lagoon',
+        'scene.dreamy_lake_placid',
+        'scene.dreamy_majestic_morning',
+        'scene.dreamy_palm_beach',
+        'scene.dreamy_pensive',
+        'scene.dreamy_still_waters',
+        'scene.dreamy_sundown',
+        'scene.futuristic_disturbia',
+        'scene.futuristic_hal',
+        'scene.futuristic_magneto',
+        'scene.futuristic_soho',
+        'scene.futuristic_tyrell',
+        'scene.futuristic_vapor_wave',
+        'scene.halloween_glowing_grins',
+        'scene.halloween_hocus_pocus',
+        'scene.halloween_pandemonium',
+        'scene.halloween_phantom',
+        'scene.halloween_spellbound',
+        'scene.halloween_toil_and_trouble',
+        'scene.halloween_trick_or_treat',
+        'scene.halloween_witching_hour',
+        'scene.lush_amber_bloom',
+        'scene.lush_blue_planet',
+        'scene.lush_forest_adventure',
+        'scene.lush_lily',
+        'scene.lush_meriete',
+        'scene.lush_orange_fields',
+        'scene.lush_painted_sky',
+        'scene.lush_winter_beauty',
+        'scene.luxurious_emerald_flutter',
+        'scene.luxurious_memento',
+        'scene.luxurious_resplendent',
+        'scene.luxurious_scarlet_dream',
+        'scene.party_vibes_cancun',
+        'scene.party_vibes_chinatown',
+        'scene.party_vibes_fairfax',
+        'scene.party_vibes_ibiza',
+        'scene.party_vibes_miami',
+        'scene.party_vibes_motown',
+        'scene.party_vibes_osaka',
+        'scene.party_vibes_rio',
+        'scene.party_vibes_tokyo',
+        'scene.peaceful_emerald_isle',
+        'scene.peaceful_frosty_dawn',
+        'scene.peaceful_lake_mist',
+        'scene.peaceful_mountain_breeze',
+        'scene.peaceful_ocean_dawn',
+        'scene.peaceful_spring_blossom',
+        'scene.peaceful_sunday_morning',
+        'scene.pure_amethyst_valley',
+        'scene.pure_autumn_gold',
+        'scene.pure_hazy_days',
+        'scene.pure_midsummer_sun',
+        'scene.pure_midwinter',
+        'scene.pure_misty_ridge',
+        'scene.pure_spring_lake',
+        'scene.pure_winter_mountain',
+        'scene.race_day_bahrain',
+        'scene.race_day_miami',
+        'scene.race_day_sao_paulo',
+        'scene.race_day_silverstone',
+        'scene.race_day_singapore',
+        'scene.race_day_suzuka',
+        'scene.race_day_zandvoort',
+        'scene.refreshing_blossom',
+        'scene.refreshing_crocus',
+        'scene.refreshing_narcissa',
+        'scene.refreshing_precious',
+        'scene.romantic_city_of_love',
+        'scene.romantic_glitz_and_glam',
+        'scene.romantic_lovebirds',
+        'scene.romantic_promise',
+        'scene.romantic_ruby_romance',
+        'scene.romantic_smitten',
+        'scene.romantic_sunset_allure',
+        'scene.serenity_arctic_aurora',
+        'scene.serenity_blood_moon',
+        'scene.serenity_galaxy',
+        'scene.serenity_moonlight',
+        'scene.serenity_nebula',
+        'scene.serenity_starlight',
+        'scene.sunrise_beginnings',
+        'scene.sunrise_first_light',
+        'scene.sunrise_horizon',
+        'scene.sunrise_sunflare',
+        'scene.sunrise_valley_dawn',
+        'scene.winter_holidays_color_burst',
+        'scene.winter_holidays_crystalline',
+        'scene.winter_holidays_festive_fun',
+        'scene.winter_holidays_golden_star',
+        'scene.winter_holidays_jolly',
+        'scene.winter_holidays_nutcracker',
+        'scene.winter_holidays_rosy_sparkle',
+        'scene.winter_holidays_silent_night',
+        'scene.winter_holidays_snow_sparkle',
+        'scene.winter_holidays_under_the_tree'
+
+      ] }}
+
+action:
+  - choose:
+      # -------- All Hue → script.all_hue_scenes --------
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.all_hue_energize' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.all_hue_scenes }
+            data:
+              variables:
+                scene: "Energize"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.all_hue_savanna_sunset' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.all_hue_scenes }
+            data:
+              variables:
+                scene: "Savanna sunset"
+
+      # -------- Main Hue → script.main_hue_scenes --------
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_savanna_sunset' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Savanna sunset"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_bright' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Bright"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_concentrate' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Concentrate"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_nightlight' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Nightlight"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.futuristic_disturbia' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Futuristic: Disturbia"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.futuristic_hal' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Futuristic: Hal"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.futuristic_magneto' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Futuristic: Magneto"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.futuristic_soho' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Futuristic: Soho"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.futuristic_tyrell' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Futuristic: Tyrell"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.futuristic_vapor_wave' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Futuristic: Vapor wave"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_dreamy_dusk' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Dreamy dusk"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_golden_pond' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Golden pond"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_honolulu' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Honolulu"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_rolling_hills' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Rolling hills"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_ruby_glow' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Ruby glow"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_tropical_twilight' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Tropical twilight"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.cozy_warm_embrace' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Cozy: Warm embrace"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.daily_arise' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Daily: Arise"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.daily_nighttime' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Daily: Nighttime"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.daily_shine' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Daily: Shine"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.daily_sleepy' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Daily: Sleepy"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.daily_storybook' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Daily: Storybook"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.daily_unwind' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Daily: Unwind"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_cool_bright' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Cool bright"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_dimmed' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Dimmed"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_energize' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Energize"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_read' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Read"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_relax' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Relax"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.defaults_rest' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Defaults: Rest"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_adrift' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Adrift"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_blue_lagoon' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Blue lagoon"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_lake_placid' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Lake Placid"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_majestic_morning' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Majestic morning"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_palm_beach' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Palm Beach"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_pensive' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Pensive"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_still_waters' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Still waters"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.dreamy_sundown' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Dreamy: Sundown"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_glowing_grins' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Glowing grins"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_hocus_pocus' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Hocus pocus"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_pandemonium' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Pandemonium"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_phantom' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Phantom"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_spellbound' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Spellbound"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_toil_and_trouble' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Toil and trouble"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_trick_or_treat' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Trick or treat"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.halloween_witching_hour' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Halloween: Witching hour"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_amber_bloom' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Amber bloom"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_blue_planet' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Blue planet"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_forest_adventure' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Forest adventure"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_lily' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Lily"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_meriete' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Meriete"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_orange_fields' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Orange fields"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_painted_sky' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Painted sky"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.lush_winter_beauty' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Lush: Winter beauty"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.luxurious_emerald_flutter' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Luxurious: Emerald flutter"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.luxurious_memento' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Luxurious: Memento"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.luxurious_resplendent' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Luxurious: Resplendent"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.luxurious_scarlet_dream' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Luxurious: Scarlet dream"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_cancun' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Cancun"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_chinatown' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Chinatown"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_fairfax' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Fairfax"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_ibiza' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Ibiza"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_miami' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Miami"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_motown' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Motown"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_osaka' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Osaka"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_rio' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Rio"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.party_vibes_tokyo' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Party vibes: Tokyo"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_emerald_isle' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Emerald isle"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_frosty_dawn' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Frosty dawn"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_lake_mist' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Lake mist"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_mountain_breeze' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Mountain breeze"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_ocean_dawn' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Ocean dawn"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_spring_blossom' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Spring blossom"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.peaceful_sunday_morning' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Peaceful: Sunday morning"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_amethyst_valley' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Amethyst valley"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_autumn_gold' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Autumn gold"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_hazy_days' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Hazy days"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_midsummer_sun' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Midsummer sun"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_midwinter' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Midwinter"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_misty_ridge' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Misty ridge"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_spring_lake' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Spring lake"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.pure_winter_mountain' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Pure: Winter mountain"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_bahrain' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: Bahrain"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_miami' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: Miami"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_silverstone' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: Silverstone"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_singapore' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: Singapore"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_suzuka' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: Suzuka"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_sao_paulo' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: São Paulo"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.race_day_zandvoort' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Race Day: Zandvoort"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.refreshing_blossom' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Refreshing: Blossom"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.refreshing_crocus' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Refreshing: Crocus"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.refreshing_narcissa' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Refreshing: Narcissa"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.refreshing_precious' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Refreshing: Precious"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_city_of_love' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: City of love"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_glitz_and_glam' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: Glitz and glam"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_lovebirds' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: Lovebirds"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_promise' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: Promise"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_ruby_romance' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: Ruby romance"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_smitten' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: Smitten"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.romantic_sunset_allure' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Romantic: Sunset allure"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.serenity_arctic_aurora' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Serenity: Arctic aurora"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.serenity_blood_moon' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Serenity: Blood moon"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.serenity_galaxy' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Serenity: Galaxy"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.serenity_moonlight' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Serenity: Moonlight"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.serenity_nebula' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Serenity: Nebula"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.serenity_starlight' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Serenity: Starlight"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.sunrise_beginnings' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Sunrise: Beginnings"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.sunrise_first_light' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Sunrise: First light"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.sunrise_horizon' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Sunrise: Horizon"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.sunrise_sunflare' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Sunrise: Sunflare"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.sunrise_valley_dawn' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Sunrise: Valley dawn"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_color_burst' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Color burst"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_crystalline' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Crystalline"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_festive_fun' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Festive fun"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_golden_star' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Golden star"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_jolly' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Jolly"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_nutcracker' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Nutcracker"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_rosy_sparkle' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Rosy sparkle"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_silent_night' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Silent night"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_snow_sparkle' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Snow sparkle"
+
+      - conditions:
+          - condition: template
+            value_template: "{{ eid == 'scene.winter_holidays_under_the_tree' }}"
+        sequence:
+          - service: script.turn_on
+            target: { entity_id: script.main_hue_scenes }
+            data:
+              variables:
+                scene: "Winter holidays: Under the tree"

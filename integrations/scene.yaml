@@ -1,0 +1,2 @@
+scene: !include ../scenes.yaml
+scene hue_control_proxy: !include_dir_list ../scenes/hue_control_proxy

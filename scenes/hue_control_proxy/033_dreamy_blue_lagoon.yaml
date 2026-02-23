@@ -1,0 +1,3 @@
+name: 'Dreamy: Blue lagoon'
+entities:
+  input_boolean.scene_dreamy_blue_lagoon: true

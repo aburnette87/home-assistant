@@ -4,39 +4,38 @@
 # if the sun is already below the horizon.
 # -----------------------------------------------------------------------------
 
-- alias: Main Light on when I Arrive Home and it's Dark
+alias: Main Light on when I Arrive Home and it's Dark
+id: "main_light_on_when_i_arrive_home_and_its_dark"
+mode: single  # Prevents re-triggering while already running
 
-  id: "main_light_on_when_i_arrive_home_and_its_dark"
-  mode: single  # Prevents re-triggering while already running
+# -----------------------------------------------------------------------------
+# Trigger
+# Fires when person.andrew enters the 'home' zone.
+# -----------------------------------------------------------------------------
+trigger:
+  - platform: zone
+    entity_id: person.andrew
+    zone: zone.home
+    event: enter
 
-  # -----------------------------------------------------------------------------
-  # Trigger
-  # Fires when person.andrew enters the 'home' zone.
-  # -----------------------------------------------------------------------------
-  trigger:
-    - platform: zone
-      entity_id: person.andrew
-      zone: zone.home
-      event: enter
+# -----------------------------------------------------------------------------
+# Condition
+# Only run if the sun has already set (below the horizon).
+# -----------------------------------------------------------------------------
+condition:
+- condition: numeric_state
+  entity_id: sun.sun
+  attribute: elevation
+  below: 0
 
-  # -----------------------------------------------------------------------------
-  # Condition
-  # Only run if the sun has already set (below the horizon).
-  # -----------------------------------------------------------------------------
-  condition:
-  - condition: numeric_state
-    entity_id: sun.sun
-    attribute: elevation
-    below: 0
-
-  # -----------------------------------------------------------------------------
-  # Actions
-  # Runs the 'main_hue_scenes' script with the 'Energize' scene as variable input.
-  # -----------------------------------------------------------------------------
-  action:
-    - service: script.turn_on
-      target:
-        entity_id: script.main_hue_scenes
-      data:
-        variables:
-          scene: Energize
+# -----------------------------------------------------------------------------
+# Actions
+# Runs the 'main_hue_scenes' script with the 'Energize' scene as variable input.
+# -----------------------------------------------------------------------------
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.main_hue_scenes
+    data:
+      variables:
+        scene: Energize

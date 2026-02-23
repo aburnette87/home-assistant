@@ -1,0 +1,3 @@
+name: 'Pure: Midsummer sun'
+entities:
+  input_boolean.scene_pure_midsummer_sun: true
