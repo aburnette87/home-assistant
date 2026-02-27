@@ -1,16 +1,13 @@
 # -----------------------------------------------------------------------------
-# Automation: Run Away Mode Script when I Leave Home
-# When you leave the 'home' zone, this automation calls the 'away_mode' script.
+# Automation: When I leave the 'home' zone, this automation calls the
+# 'away_mode' script.
 # -----------------------------------------------------------------------------
-
 alias: Away Mode Script Run when I Leave Home
-id: "away_mode_script_run_when_i_leave_home"  # Unique ID for Home Assistant tracking and UI editing
-description: "Uses 'Away Mode' script"
-mode: single          # Prevents overlapping if trigger happens again quickly
+id: "away_mode_script_run_when_i_leave_home"
+mode: single
 
 # -----------------------------------------------------------------------------
-# Triggers
-# Fires when person.andrew leaves the home zone.
+# Triggers: Fires when person.andrew leaves the home zone.
 # -----------------------------------------------------------------------------
 trigger:
   - platform: zone
@@ -19,14 +16,12 @@ trigger:
     event: leave
 
 # -----------------------------------------------------------------------------
-# Conditions
-# None specified — will always run when the trigger is met.
+# Conditions: None specified — will always run when the trigger is met.
 # -----------------------------------------------------------------------------
 condition: []
 
 # -----------------------------------------------------------------------------
-# Actions
-# Executes the away_mode script.
+# Actions: Executes the away_mode script.
 # -----------------------------------------------------------------------------
 action:
   - service: script.away_mode

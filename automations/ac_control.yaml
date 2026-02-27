@@ -1,13 +1,16 @@
 # -----------------------------------------------------------------------------
-# EcoNet | Arrival / Leave-Work Pre-Conditioning + Sleep Mode
+# Automation: Arrival / Leave-Work Pre-Conditioning + Sleep Mode
 # -----------------------------------------------------------------------------
-alias: EcoNet | Arrival + Workday Pre-Conditioning + Sleep
+alias: Arrival + Workday Pre-Conditioning + Sleep
 id: econet_arrival_workday_precool_sleep
 mode: single
 
+# -----------------------------------------------------------------------------
+# Variables:
+# -----------------------------------------------------------------------------
 variables:
-  climate_entity: climate.thermostat # <-- EcoNet climate
-  workday_entity: binary_sensor.workday_sensor # <-- workday sensor
+  climate_entity: climate.thermostat
+  workday_entity: binary_sensor.workday_sensor
   # alarm_entity: alarm_control_panel.vivint_smart_hub
   current_temp: "{{ state_attr(climate_entity, 'current_temperature')|float(0) }}"
   is_off: "{{ is_state(climate_entity, 'off') }}"
@@ -15,55 +18,56 @@ variables:
   after_11pm: "{{ now().hour >= 23 }}"
   target_mid: 70
 
+# -----------------------------------------------------------------------------
+# Triggers: Fires when any of these are met.
+#  1) "am home" (fires on any change *to* home)
+#  2) arrive home: explicit not_home -> home edge
+#  3) pre-cool/heat: leave work (only relevant on workdays)
+#  4) Arm Stay after 11pm
+#  5) 11:00 PM tick (if already armed_stay)
+# -----------------------------------------------------------------------------
 trigger:
-  # 1) "am home" (fires on any change *to* home)
   - id: am_home
     platform: state
     entity_id: person.andrew
     to: "home"
 
-  # 2) arrive home: explicit not_home -> home edge
   - id: arrive_home
     platform: state
     entity_id: person.andrew
     from: "not_home"
     to: "home"
 
-  # 3) pre-cool/heat: leave work (only relevant on workdays)
   - id: leave_work
     platform: zone
     entity_id: person.andrew
     zone: zone.work
     event: leave
 
-  # Sleep mode can’t happen without a trigger; add two light ones:
-
-  # 4) Arm Stay after 11pm
   - id: arm_stay_after_11
     platform: state
     entity_id: alarm_control_panel.vivint_smart_hub
     to: armed_stay
 
-  # 5) 11:00 PM tick (if already armed_stay)
   - id: eleven_pm_tick
     platform: time
     at: "23:00:00"
 
-# Global gate:
-# 0) A/C is in an "off" state  (sleep mode is allowed regardless)
+# -----------------------------------------------------------------------------
+# Conditions: None defined — automation always triggers at sunrise.
+#  0) A/C is in an "off" state  (sleep mode is allowed regardless)
+#  Presence/trigger logic:
+#  1) (I am home) OR (arrive_home) OR (leave_work)
+# -----------------------------------------------------------------------------
 condition:
   - condition: or
     conditions:
-      # Sleep mode branch exempt from the "off" requirement
       - condition: template
         value_template: >
           {{ trigger.id in ['arm_stay_after_11','eleven_pm_tick'] }}
-      # Otherwise require HVAC off
       - condition: template
         value_template: "{{ is_off }}"
 
-  # Presence/trigger logic:
-  # 1) (I am home) OR (arrive_home) OR (leave_work)
   - condition: or
     conditions:
       - condition: state
@@ -74,13 +78,20 @@ condition:
       - condition: template
         value_template: "{{ trigger.id == 'leave_work' }}"
 
+# -----------------------------------------------------------------------------
+# Actions: Turns on the A/C based on condition.
+#  SLEEP MODE:
+#  WHEN alarm is armed_stay AND time is 11:00 PM or later
+#  THEN set mode heat_cool and band 67–69
+#  ----------------------------------------------------------------------------
+#  LEAVING WORK PRE-COOL (workday only):
+#  IF temp > 70 AND mode is off -> cool to 70
+#  ----------------------------------------------------------------------------
+#  LEAVING WORK PRE-HEAT (workday only):
+#  IF temp < 70 AND mode is off -> heat to 70
+# -----------------------------------------------------------------------------
 action:
   - choose:
-      # -------------------------------------------------------------------
-      # SLEEP MODE:
-      # WHEN alarm is armed_stay AND time is 11:00 PM or later
-      # THEN set mode heat_cool and band 67–69
-      # -------------------------------------------------------------------
       - conditions:
           - condition: state
             entity_id: alarm_control_panel.vivint_smart_hub
@@ -97,10 +108,6 @@ action:
               target_temp_high: 69
               target_temp_low: 67
 
-      # -------------------------------------------------------------------
-      # LEAVING WORK PRE-COOL (workday only):
-      # IF temp > 70 AND mode is off -> cool to 70
-      # -------------------------------------------------------------------
       - conditions:
           - condition: template
             value_template: "{{ trigger.id == 'leave_work' }}"
@@ -119,10 +126,6 @@ action:
             target: { entity_id: "{{ climate_entity }}" }
             data: { temperature: "{{ target_mid }}" }
 
-      # -------------------------------------------------------------------
-      # LEAVING WORK PRE-HEAT (workday only):
-      # IF temp < 70 AND mode is off -> heat to 70
-      # -------------------------------------------------------------------
       - conditions:
           - condition: template
             value_template: "{{ trigger.id == 'leave_work' }}"

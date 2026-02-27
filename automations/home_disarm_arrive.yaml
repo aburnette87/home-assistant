@@ -4,15 +4,12 @@
 # 1. Disarms the Vivint security system using a secret code.
 # 2. Opens the garage door.
 # -----------------------------------------------------------------------------
-
 alias: Home Disarm when I Arrive Home
-
-id: "home_disarm_when_i_arrive_home"  # Unique ID for Home Assistant tracking and UI editing
-mode: single         # Prevents overlapping execution
+id: "home_disarm_when_i_arrive_home"
+mode: single
 
 # -----------------------------------------------------------------------------
-# Triggers
-# Fires when person.andrew enters the 'home' zone.
+# Triggers: Fires when person.andrew enters the 'home' zone.
 # -----------------------------------------------------------------------------
 trigger:
   - platform: zone
@@ -22,30 +19,30 @@ trigger:
 
 # -----------------------------------------------------------------------------
 # Conditions
-# A. Only proceed if the alarm panel is *not* already disarmed for at least 1 minute.
-#    This prevents the automation from retriggering if the system is already disarmed.
-# B. Only proceed if the garage door is *not* already open.
-#    Prevents sending another open command if it’s already open.
+#  A. Only proceed if the alarm panel is *not* already disarmed for at least 1
+#     minute. This prevents the automation from retriggering if the system is
+#     already disarmed.
+#  B. Only proceed if the garage door is *not* already open. Prevents sending
+#     another open command if it’s already open.
 # -----------------------------------------------------------------------------
 condition:
-- condition: not
-  conditions:
-    - condition: state
-      entity_id: alarm_control_panel.vivint_smart_hub
-      state: "disarmed"
-      for: "00:01:00"
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.vivint_smart_hub
+        state: "disarmed"
+        for: "00:01:00"
 
-- condition: not
-  conditions:
-    - condition: state
-      entity_id: cover.garage_door
-      state: "open"
-
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: cover.garage_door
+        state: "open"
 
 # -----------------------------------------------------------------------------
 # Actions
-# A. Disarm the security system using a secret alarm code.
-# B. Open the garage door.
+#  A. Disarm the security system using a secret alarm code.
+#  B. Open the garage door.
 # -----------------------------------------------------------------------------
 action:
   - if:

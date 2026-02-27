@@ -1,16 +1,14 @@
 # -----------------------------------------------------------------------------
-# Automation: Open Garage Door in the Morning
-# Automatically opens the garage door if the interior garage door is opened 
-# between 7:00 AM and 9:00 AM on a workday (per the workday sensor).
+# Automation: Automatically opens the garage door if the interior garage door
+# is opened between 7:00 AM and 9:00 AM on a workday (per the workday sensor).
 # -----------------------------------------------------------------------------
-
 alias: Garage Door Open in the Morning
-id: "garage_door_open_in_the_morning"  # Unique ID for UI editing/tracking
-mode: single         # Prevents overlapping execution
+id: "garage_door_open_in_the_morning"
+mode: single
 
 # -----------------------------------------------------------------------------
-# Triggers
-# Fires when the interior garage door sensor changes from 'off' (closed) to 'on' (open).
+# Triggers: Fires when the interior garage door sensor changes from 'off'
+# (closed) to 'on' (open).
 # -----------------------------------------------------------------------------
 trigger:
   - platform: state
@@ -19,8 +17,7 @@ trigger:
     to: "on"
 
 # -----------------------------------------------------------------------------
-# Conditions
-# Only continues if the current time is between 7:00 AM and 9:00 AM,
+# Conditions: Only continues if the current time is between 7:00 AM and 9:00 AM,
 # AND it is a workday, as determined by the binary_sensor.workday_sensor.
 # -----------------------------------------------------------------------------
 condition:
@@ -33,8 +30,7 @@ condition:
     state: "on"
 
 # -----------------------------------------------------------------------------
-# Actions
-# Opens the main garage door if conditions and triggers are met.
+# Actions: Opens the main garage door if conditions and triggers are met.
 # -----------------------------------------------------------------------------
 action:
   - service: cover.open_cover

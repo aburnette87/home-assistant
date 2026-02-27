@@ -1,11 +1,14 @@
 # -----------------------------------------------------------------------------
-# Automation: Bridge Hue-Like Card scenes to Nilsreiter script
-# Calls your script with the proper scene name when a proxy scene is tapped.
+# Automation: Calls my script with the proper scene name when a proxy scene is
+# tapped.
 # -----------------------------------------------------------------------------
 alias: Bridge Hue Card → Nilsreiter
 id: bridge_hue_card_to_nilsreiter
 mode: single
 
+# -----------------------------------------------------------------------------
+# Trigger: Triggered when scene is turned on.
+# -----------------------------------------------------------------------------
 trigger:
   - platform: event
     event_type: call_service
@@ -13,6 +16,9 @@ trigger:
       domain: scene
       service: turn_on
 
+# -----------------------------------------------------------------------------
+# Variables:
+# -----------------------------------------------------------------------------
 variables:
   eid: >-
     {% set sd = trigger.event.data.service_data %}
@@ -22,6 +28,9 @@ variables:
       {% else %}{{ '' }}{% endif %}
     {% else %}{{ '' }}{% endif %}
 
+# -----------------------------------------------------------------------------
+# Conditions: Selecting any of these scenes are conditions.
+# -----------------------------------------------------------------------------
 condition:
   - condition: template
     value_template: >-
@@ -151,6 +160,9 @@ condition:
 
       ] }}
 
+# -----------------------------------------------------------------------------
+# Actions: When a scene is selected, run script.
+# -----------------------------------------------------------------------------
 action:
   - choose:
       # -------- All Hue → script.all_hue_scenes --------

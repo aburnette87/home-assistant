@@ -1,15 +1,12 @@
 # -----------------------------------------------------------------------------
-# Automation: Turn off Garage Outside Lights at Sunrise
-# Turns off the exterior garage door lights when the sun rises.
+# Automation: Turns off the exterior garage door lights when the sun rises.
 # -----------------------------------------------------------------------------
-
 alias: Garage Outside Lights off in the Morning
-id: "garage_outside_lights_off_in_the_morning"  # Unique ID for UI tracking/editing
-mode: single         # Ensures this automation won’t overlap if retriggered
+id: "garage_outside_lights_off_in_the_morning"
+mode: single
 
 # -----------------------------------------------------------------------------
-# Triggers
-# Fires precisely at sunrise, based on the sun integration.
+# Triggers: Fires precisely at sunrise, based on the sun integration.
 # -----------------------------------------------------------------------------
 trigger:
   - platform: sun
@@ -17,14 +14,12 @@ trigger:
     offset: "00:00:00"
 
 # -----------------------------------------------------------------------------
-# Conditions
-# None defined — automation always triggers at sunrise.
+# Conditions: None defined — automation always triggers at sunrise.
 # -----------------------------------------------------------------------------
 condition: []
 
 # -----------------------------------------------------------------------------
-# Actions
-# Turns off the garage lights via the associated switch.
+# Actions: Turns off the garage lights via the associated switch.
 # -----------------------------------------------------------------------------
 action:
   - service: switch.turn_off

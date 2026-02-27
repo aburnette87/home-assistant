@@ -1,15 +1,12 @@
 # -----------------------------------------------------------------------------
-# Automation: Wake Up
-# Triggers the 'light_sunrise' script using a parabolic alarm blueprint
-# based on the input time and workday conditions.
+# Automation: Triggers the 'light_sunrise' script using a parabolic alarm
+# blueprint based on the input time and workday conditions.
 # -----------------------------------------------------------------------------
-
 alias: Primary Bedroom Left Nightstand Light on in Morning
 id: "primary_bedroom_left_nightstand_light_on_in_morning"
 
 # -----------------------------------------------------------------------------
-# Blueprint Usage
-# This automation uses the 'parabolic_alarm' blueprint by steku.
+# Blueprint: This automation uses the 'parabolic_alarm' blueprint by steku.
 # Inputs specify time, day condition, script to run, and target light.
 # -----------------------------------------------------------------------------
 use_blueprint:

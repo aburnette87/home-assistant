@@ -1,16 +1,13 @@
 # -----------------------------------------------------------------------------
-# Automation: Turn On Main Light when I Arrive Home and it's Dark
-# Triggers when you enter the 'home' zone, but only turns on the main lights
-# if the sun is already below the horizon.
+# Automation: Triggers when I enter the 'home' zone, but only turns on the main
+# lights if the sun is already below the horizon.
 # -----------------------------------------------------------------------------
-
 alias: Main Light on when I Arrive Home and it's Dark
 id: "main_light_on_when_i_arrive_home_and_its_dark"
-mode: single  # Prevents re-triggering while already running
+mode: single
 
 # -----------------------------------------------------------------------------
-# Trigger
-# Fires when person.andrew enters the 'home' zone.
+# Trigger: Fires when person.andrew enters the 'home' zone.
 # -----------------------------------------------------------------------------
 trigger:
   - platform: zone
@@ -19,18 +16,17 @@ trigger:
     event: enter
 
 # -----------------------------------------------------------------------------
-# Condition
-# Only run if the sun has already set (below the horizon).
+# Condition: Only run if the sun has already set (below the horizon).
 # -----------------------------------------------------------------------------
 condition:
-- condition: numeric_state
-  entity_id: sun.sun
-  attribute: elevation
-  below: 0
+  - condition: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: 0
 
 # -----------------------------------------------------------------------------
-# Actions
-# Runs the 'main_hue_scenes' script with the 'Energize' scene as variable input.
+# Actions: Runs the 'main_hue_scenes' script with the 'Energize' scene as
+# variable input.
 # -----------------------------------------------------------------------------
 action:
   - service: script.turn_on
