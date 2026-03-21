@@ -1,0 +1,3 @@
+name: 'Race Day: Singapore'
+entities:
+  input_boolean.scene_all_race_day_singapore: true

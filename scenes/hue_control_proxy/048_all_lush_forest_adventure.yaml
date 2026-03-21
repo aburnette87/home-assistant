@@ -1,0 +1,3 @@
+name: 'Lush: Forest adventure'
+entities:
+  input_boolean.scene_all_lush_forest_adventure: true

@@ -1,0 +1,3 @@
+name: 'Halloween: Hocus pocus'
+entities:
+  input_boolean.scene_all_halloween_hocus_pocus: true

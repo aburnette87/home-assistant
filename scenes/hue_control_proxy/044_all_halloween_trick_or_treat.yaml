@@ -1,0 +1,3 @@
+name: 'Halloween: Trick or treat'
+entities:
+  input_boolean.scene_all_halloween_trick_or_treat: true

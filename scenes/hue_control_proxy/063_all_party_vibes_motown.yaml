@@ -1,0 +1,3 @@
+name: 'Party vibes: Motown'
+entities:
+  input_boolean.scene_all_party_vibes_motown: true
