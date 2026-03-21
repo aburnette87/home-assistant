@@ -1,3 +1,4 @@
+# Main Hue
 - entity: scene.defaults_bright
   title: "Defaults: Bright"
 

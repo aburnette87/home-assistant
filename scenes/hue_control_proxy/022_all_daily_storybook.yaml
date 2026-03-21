@@ -1,0 +1,3 @@
+name: 'Daily: Storybook'
+entities:
+  input_boolean.scene_all_daily_storybook: true

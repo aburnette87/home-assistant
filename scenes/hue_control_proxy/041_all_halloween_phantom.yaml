@@ -1,0 +1,3 @@
+name: 'Halloween: Phantom'
+entities:
+  input_boolean.scene_all_halloween_phantom: true

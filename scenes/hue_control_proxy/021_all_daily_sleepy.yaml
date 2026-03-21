@@ -1,0 +1,3 @@
+name: 'Daily: Sleepy'
+entities:
+  input_boolean.scene_all_daily_sleepy: true

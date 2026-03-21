@@ -1,0 +1,3 @@
+name: 'Luxurious: Memento'
+entities:
+  input_boolean.scene_all_luxurious_memento: true

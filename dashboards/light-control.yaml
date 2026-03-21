@@ -28,7 +28,7 @@ views:
             offHoldAction: hue-screen
             onHoldAction: hue-screen
 
-            scenes: !include include/hue_scenes.yaml
+            scenes: !include include/all_hue_scenes.yaml
 
           # Main Hue Card
           - type: custom:hue-like-light-card
@@ -47,6 +47,6 @@ views:
             offHoldAction: hue-screen
             onHoldAction: hue-screen
 
-            scenes: !include include/hue_scenes.yaml
+            scenes: !include include/main_hue_scenes.yaml
 
     cards: []
