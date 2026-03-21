@@ -15,4 +15,4 @@ use_blueprint:
     alarm_start_time: input_datetime.time
     workday_sensor: binary_sensor.workday_sensor
     alarm_script: script.light_sunrise
-    target_light: light.primary_bedroom_left_nightstand_light
+    target_light: light.left_nightstand_lamp

@@ -1,0 +1,70 @@
+views:
+  - title: HVAC Data
+    cards:
+      - title: 1-Day History
+        type: history-graph
+        entities:
+          - entity: climate.thermostat
+          - entity: sensor.tower_fan_temperature
+        logarithmic_scale: false
+        hours_to_show: 24
+      - title: 4-Day History
+        type: history-graph
+        entities:
+          - entity: climate.thermostat
+          - entity: sensor.tower_fan_temperature
+        hours_to_show: 96
+    type: masonry
+  - type: masonry
+    path: nas-data
+    title: NAS Data
+    cards:
+      - chart_type: line
+        period: day
+        type: statistics-graph
+        entities:
+          - sensor.ds923_cpu_utilization_other
+          - sensor.ds923_cpu_utilization_system
+          - sensor.ds923_cpu_utilization_total
+          - sensor.ds923_cpu_utilization_user
+        stat_types:
+          - mean
+          - min
+          - max
+        hide_legend: false
+      - chart_type: line
+        period: day
+        type: statistics-graph
+        entities:
+          - sensor.ds923_memory_available_real
+          - sensor.ds923_memory_available_swap
+          - sensor.ds923_memory_cached
+          - sensor.ds923_memory_size
+          - sensor.ds923_memory_total_real
+          - sensor.ds923_memory_total_swap
+          - sensor.ds923_memory_usage_real
+        stat_types:
+          - mean
+          - min
+          - max
+      - chart_type: line
+        period: day
+        type: statistics-graph
+        entities:
+          - sensor.ds923_drive_1_temperature
+          - sensor.ds923_drive_2_temperature
+          - sensor.ds923_drive_3_temperature
+          - sensor.ds923_drive_4_temperature
+          - sensor.ds923_m_2_drive_1_temperature
+          - sensor.ds923_volume_1_average_disk_temp
+          - sensor.ds923_volume_1_maximum_disk_temp
+          - sensor.ds923_volume_3_average_disk_temp
+          - sensor.ds923_volume_3_maximum_disk_temp
+          - sensor.ds923_temperature
+        stat_types:
+          - mean
+          - min
+          - max
+    badges:
+      - type: entity
+        entity: binary_sensor.ds923_security_status

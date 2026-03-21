@@ -7,7 +7,7 @@ lovelace:
       type: module
 
   dashboards:
-    lovelace:
+    dashboard-lovelace:
       mode: yaml
       filename: dashboards/ui-lovelace.yaml
       title: Home
@@ -15,10 +15,26 @@ lovelace:
       show_in_sidebar: true
       require_admin: false
 
-    lovelace-lights:
+    dashboard-lights:
       mode: yaml
-      filename: dashboards/hue-control.yaml
-      title: Hue Control
+      filename: dashboards/light-control.yaml
+      title: Light Control
       icon: hue:bulb-group-classic-4-alt
+      show_in_sidebar: true
+      require_admin: false
+
+    dashboard-sensors:
+      mode: yaml
+      filename: dashboards/sensor-data.yaml
+      title: Sensor Data
+      icon: hue:outdoor-motion-sensor-temperature
+      show_in_sidebar: true
+      require_admin: false
+
+    dashboard-map:
+      mode: yaml
+      filename: dashboards/map.yaml
+      title: Map
+      icon: mdi:map
       show_in_sidebar: true
       require_admin: false

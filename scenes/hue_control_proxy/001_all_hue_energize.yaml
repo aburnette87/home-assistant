@@ -1,4 +1,0 @@
-name: All Hue Energize
-icon: mdi:white-balance-sunny
-entities:
-  input_boolean.scene_all_hue_energize: true

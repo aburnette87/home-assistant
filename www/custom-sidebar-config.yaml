@@ -1,0 +1,38 @@
+title: "My Home"
+
+order:
+  - item: "Home"
+    exact: true
+    order: 1
+
+  - item: "Light Control"
+    exact: true
+    order: 2
+
+  - item: "Sensor Data"
+    exact: true
+    order: 3
+
+  - item: "Map"
+    exact: true
+    order: 4
+
+  - item: "Activity"
+    exact: true
+    order: 5
+
+  - item: "Calendar"
+    exact: true
+    order: 6
+
+  - item: "HACS"
+    exact: true
+    order: 7
+
+  - item: "Studio Code Server"
+    exact: true
+    order: 8
+
+  - item: "ESPHome Builder"
+    exact: true
+    order: 9

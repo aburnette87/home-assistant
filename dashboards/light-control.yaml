@@ -1,0 +1,52 @@
+views:
+  - type: sections
+    max_columns: 4
+    title: Light Control
+    path: light-control
+    icon: hue:bulb-group-classic-4-alt
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Hue
+
+          # All Hue Card
+          - type: custom:hue-like-light-card
+            title: All Hue
+            icon: hue:bulb-group
+            description: false
+
+            entities:
+              - light.bar_hue
+              - light.kitchen_hue
+              - light.living_room_hue
+              - light.office_hue
+              - light.primary_bedroom_hue
+
+            offClickAction: hue-screen
+            onClickAction: hue-screen
+            offHoldAction: hue-screen
+            onHoldAction: hue-screen
+
+            scenes: !include include/hue_scenes.yaml
+
+          # Main Hue Card
+          - type: custom:hue-like-light-card
+            title: Main Hue
+            icon: hue:bulb-group
+            description: false
+
+            entities:
+              - light.bar_hue
+              - light.kitchen_hue
+              - light.living_room_hue
+              - light.office_hue
+
+            offClickAction: hue-screen
+            onClickAction: hue-screen
+            offHoldAction: hue-screen
+            onHoldAction: hue-screen
+
+            scenes: !include include/hue_scenes.yaml
+
+    cards: []

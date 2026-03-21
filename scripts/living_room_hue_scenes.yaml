@@ -4,10 +4,10 @@ use_blueprint:
   input:
     target:
       entity_id:
-      - light.bar_light_1
-      - light.bar_light_2
-      - light.living_room_spotlight
-      - light.living_room_light_strip
+        - light.bar_1
+        - light.bar_2
+        - light.spotlight
+        - light.lightstrip
     default_repeat_delay:
       hours: 0
       minutes: 0
@@ -15,4 +15,4 @@ use_blueprint:
     default_use_scene_brightness: false
     default_brightness: 100
     include_mode_color_temp: true
-description: ''
+description: ""

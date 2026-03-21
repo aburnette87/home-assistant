@@ -38,11 +38,11 @@ views:
         columns: 3
         cards:
           - type: tile
-            entity: light.living_room
+            entity: light.living_room_hue
           - type: tile
-            entity: light.kitchen
+            entity: light.kitchen_hue
           - type: tile
-            entity: light.office
+            entity: light.office_hue
 
       # ===== Hue Scenes (same dashboard) =====
       - type: grid

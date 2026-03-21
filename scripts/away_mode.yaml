@@ -12,7 +12,6 @@ mode: single
 # Executes each action in order
 # -----------------------------------------------------------------------------
 sequence:
-
   # Turn off the vanity lights
   - service: light.turn_off
     target:
@@ -26,7 +25,7 @@ sequence:
   # Turn off the ceiling fan light (if on)
   - service: light.turn_off
     target:
-      entity_id: light.living_room_ceiling_fan_light
+      entity_id: light.ceiling_fan_light
 
   # Arm the Vivint alarm in Away mode
   - service: alarm_control_panel.alarm_arm_away

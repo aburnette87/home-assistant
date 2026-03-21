@@ -1,0 +1,359 @@
+- entity: scene.defaults_bright
+  title: "Defaults: Bright"
+
+- entity: scene.defaults_concentrate
+  title: "Defaults: Concentrate"
+
+- entity: scene.defaults_nightlight
+  title: "Defaults: Nightlight"
+
+- entity: scene.cozy_savanna_sunset
+  title: "Cozy: Savanna sunset"
+
+- entity: scene.futuristic_disturbia
+  title: "Futuristic: Disturbia"
+
+- entity: scene.futuristic_hal
+  title: "Futuristic: Hal"
+
+- entity: scene.futuristic_magneto
+  title: "Futuristic: Magneto"
+
+- entity: scene.futuristic_soho
+  title: "Futuristic: Soho"
+
+- entity: scene.futuristic_tyrell
+  title: "Futuristic: Tyrell"
+
+- entity: scene.futuristic_vapor_wave
+  title: "Futuristic: Vapor wave"
+
+- entity: scene.cozy_dreamy_dusk
+  title: "Cozy: Dreamy dusk"
+
+- entity: scene.cozy_golden_pond
+  title: "Cozy: Golden pond"
+
+- entity: scene.cozy_honolulu
+  title: "Cozy: Honolulu"
+
+- entity: scene.cozy_rolling_hills
+  title: "Cozy: Rolling hills"
+
+- entity: scene.cozy_ruby_glow
+  title: "Cozy: Ruby glow"
+
+- entity: scene.cozy_tropical_twilight
+  title: "Cozy: Tropical twilight"
+
+- entity: scene.cozy_warm_embrace
+  title: "Cozy: Warm embrace"
+
+- entity: scene.daily_arise
+  title: "Daily: Arise"
+
+- entity: scene.daily_nighttime
+  title: "Daily: Nighttime"
+
+- entity: scene.daily_shine
+  title: "Daily: Shine"
+
+- entity: scene.daily_sleepy
+  title: "Daily: Sleepy"
+
+- entity: scene.daily_storybook
+  title: "Daily: Storybook"
+
+- entity: scene.daily_unwind
+  title: "Daily: Unwind"
+
+- entity: scene.defaults_cool_bright
+  title: "Defaults: Cool bright"
+
+- entity: scene.defaults_dimmed
+  title: "Defaults: Dimmed"
+
+- entity: scene.defaults_energize
+  title: "Defaults: Energize"
+
+- entity: scene.defaults_read
+  title: "Defaults: Read"
+
+- entity: scene.defaults_relax
+  title: "Defaults: Relax"
+
+- entity: scene.defaults_rest
+  title: "Defaults: Rest"
+
+- entity: scene.dreamy_adrift
+  title: "Dreamy: Adrift"
+
+- entity: scene.dreamy_blue_lagoon
+  title: "Dreamy: Blue lagoon"
+
+- entity: scene.dreamy_lake_placid
+  title: "Dreamy: Lake Placid"
+
+- entity: scene.dreamy_majestic_morning
+  title: "Dreamy: Majestic morning"
+
+- entity: scene.dreamy_palm_beach
+  title: "Dreamy: Palm Beach"
+
+- entity: scene.dreamy_pensive
+  title: "Dreamy: Pensive"
+
+- entity: scene.dreamy_still_waters
+  title: "Dreamy: Still waters"
+
+- entity: scene.dreamy_sundown
+  title: "Dreamy: Sundown"
+
+- entity: scene.halloween_glowing_grins
+  title: "Halloween: Glowing grins"
+
+- entity: scene.halloween_hocus_pocus
+  title: "Halloween: Hocus pocus"
+
+- entity: scene.halloween_pandemonium
+  title: "Halloween: Pandemonium"
+
+- entity: scene.halloween_phantom
+  title: "Halloween: Phantom"
+
+- entity: scene.halloween_spellbound
+  title: "Halloween: Spellbound"
+
+- entity: scene.halloween_toil_and_trouble
+  title: "Halloween: Toil and trouble"
+
+- entity: scene.halloween_trick_or_treat
+  title: "Halloween: Trick or treat"
+
+- entity: scene.halloween_witching_hour
+  title: "Halloween: Witching hour"
+
+- entity: scene.lush_amber_bloom
+  title: "Lush: Amber bloom"
+
+- entity: scene.lush_blue_planet
+  title: "Lush: Blue planet"
+
+- entity: scene.lush_forest_adventure
+  title: "Lush: Forest adventure"
+
+- entity: scene.lush_lily
+  title: "Lush: Lily"
+
+- entity: scene.lush_meriete
+  title: "Lush: Meriete"
+
+- entity: scene.lush_orange_fields
+  title: "Lush: Orange fields"
+
+- entity: scene.lush_painted_sky
+  title: "Lush: Painted sky"
+
+- entity: scene.lush_winter_beauty
+  title: "Lush: Winter beauty"
+
+- entity: scene.luxurious_emerald_flutter
+  title: "Luxurious: Emerald flutter"
+
+- entity: scene.luxurious_memento
+  title: "Luxurious: Memento"
+
+- entity: scene.luxurious_resplendent
+  title: "Luxurious: Resplendent"
+
+- entity: scene.luxurious_scarlet_dream
+  title: "Luxurious: Scarlet dream"
+
+- entity: scene.party_vibes_cancun
+  title: "Party vibes: Cancun"
+
+- entity: scene.party_vibes_chinatown
+  title: "Party vibes: Chinatown"
+
+- entity: scene.party_vibes_fairfax
+  title: "Party vibes: Fairfax"
+
+- entity: scene.party_vibes_ibiza
+  title: "Party vibes: Ibiza"
+
+- entity: scene.party_vibes_miami
+  title: "Party vibes: Miami"
+
+- entity: scene.party_vibes_motown
+  title: "Party vibes: Motown"
+
+- entity: scene.party_vibes_osaka
+  title: "Party vibes: Osaka"
+
+- entity: scene.party_vibes_rio
+  title: "Party vibes: Rio"
+
+- entity: scene.party_vibes_tokyo
+  title: "Party vibes: Tokyo"
+
+- entity: scene.peaceful_emerald_isle
+  title: "Peaceful: Emerald isle"
+
+- entity: scene.peaceful_frosty_dawn
+  title: "Peaceful: Frosty dawn"
+
+- entity: scene.peaceful_lake_mist
+  title: "Peaceful: Lake mist"
+
+- entity: scene.peaceful_mountain_breeze
+  title: "Peaceful: Mountain breeze"
+
+- entity: scene.peaceful_ocean_dawn
+  title: "Peaceful: Ocean dawn"
+
+- entity: scene.peaceful_spring_blossom
+  title: "Peaceful: Spring blossom"
+
+- entity: scene.peaceful_sunday_morning
+  title: "Peaceful: Sunday morning"
+
+- entity: scene.pure_amethyst_valley
+  title: "Pure: Amethyst valley"
+
+- entity: scene.pure_autumn_gold
+  title: "Pure: Autumn gold"
+
+- entity: scene.pure_hazy_days
+  title: "Pure: Hazy days"
+
+- entity: scene.pure_midsummer_sun
+  title: "Pure: Midsummer sun"
+
+- entity: scene.pure_midwinter
+  title: "Pure: Midwinter"
+
+- entity: scene.pure_misty_ridge
+  title: "Pure: Misty ridge"
+
+- entity: scene.pure_spring_lake
+  title: "Pure: Spring lake"
+
+- entity: scene.pure_winter_mountain
+  title: "Pure: Winter mountain"
+
+- entity: scene.race_day_bahrain
+  title: "Race Day: Bahrain"
+
+- entity: scene.race_day_miami
+  title: "Race Day: Miami"
+
+- entity: scene.race_day_silverstone
+  title: "Race Day: Silverstone"
+
+- entity: scene.race_day_singapore
+  title: "Race Day: Singapore"
+
+- entity: scene.race_day_suzuka
+  title: "Race Day: Suzuka"
+
+- entity: scene.race_day_sao_paulo
+  title: "Race Day: São Paulo"
+
+- entity: scene.race_day_zandvoort
+  title: "Race Day: Zandvoort"
+
+- entity: scene.refreshing_blossom
+  title: "Refreshing: Blossom"
+
+- entity: scene.refreshing_crocus
+  title: "Refreshing: Crocus"
+
+- entity: scene.refreshing_narcissa
+  title: "Refreshing: Narcissa"
+
+- entity: scene.refreshing_precious
+  title: "Refreshing: Precious"
+
+- entity: scene.romantic_city_of_love
+  title: "Romantic: City of love"
+
+- entity: scene.romantic_glitz_and_glam
+  title: "Romantic: Glitz and glam"
+
+- entity: scene.romantic_lovebirds
+  title: "Romantic: Lovebirds"
+
+- entity: scene.romantic_promise
+  title: "Romantic: Promise"
+
+- entity: scene.romantic_ruby_romance
+  title: "Romantic: Ruby romance"
+
+- entity: scene.romantic_smitten
+  title: "Romantic: Smitten"
+
+- entity: scene.romantic_sunset_allure
+  title: "Romantic: Sunset allure"
+
+- entity: scene.serenity_arctic_aurora
+  title: "Serenity: Arctic aurora"
+
+- entity: scene.serenity_blood_moon
+  title: "Serenity: Blood moon"
+
+- entity: scene.serenity_galaxy
+  title: "Serenity: Galaxy"
+
+- entity: scene.serenity_moonlight
+  title: "Serenity: Moonlight"
+
+- entity: scene.serenity_nebula
+  title: "Serenity: Nebula"
+
+- entity: scene.serenity_starlight
+  title: "Serenity: Starlight"
+
+- entity: scene.sunrise_beginnings
+  title: "Sunrise: Beginnings"
+
+- entity: scene.sunrise_first_light
+  title: "Sunrise: First light"
+
+- entity: scene.sunrise_horizon
+  title: "Sunrise: Horizon"
+
+- entity: scene.sunrise_sunflare
+  title: "Sunrise: Sunflare"
+
+- entity: scene.sunrise_valley_dawn
+  title: "Sunrise: Valley dawn"
+
+- entity: scene.winter_holidays_color_burst
+  title: "Winter holidays: Color burst"
+
+- entity: scene.winter_holidays_crystalline
+  title: "Winter holidays: Crystalline"
+
+- entity: scene.winter_holidays_festive_fun
+  title: "Winter holidays: Festive fun"
+
+- entity: scene.winter_holidays_golden_star
+  title: "Winter holidays: Golden star"
+
+- entity: scene.winter_holidays_jolly
+  title: "Winter holidays: Jolly"
+
+- entity: scene.winter_holidays_nutcracker
+  title: "Winter holidays: Nutcracker"
+
+- entity: scene.winter_holidays_rosy_sparkle
+  title: "Winter holidays: Rosy sparkle"
+
+- entity: scene.winter_holidays_silent_night
+  title: "Winter holidays: Silent night"
+
+- entity: scene.winter_holidays_snow_sparkle
+  title: "Winter holidays: Snow sparkle"
+
+- entity: scene.winter_holidays_under_the_tree
+  title: "Winter holidays: Under the tree"
