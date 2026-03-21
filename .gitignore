@@ -4,6 +4,7 @@ secrets.yaml
 
 # Ignore broad directories
 __pycache__
+.cache
 .cloud
 .ssh
 .storage
