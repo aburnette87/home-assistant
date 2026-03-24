@@ -15,6 +15,7 @@ image
 tts
 unused
 www/community
+hass-emulated-hue
 
 # Ignore specific file extensions
 *.crt
