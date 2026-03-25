@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # Automation: Disarm when I Arrive Home
-# When person.andrew enters the home zone, this automation:
+# When I enter the home zone, this automation:
 # 1. Disarms the Vivint security system using a secret code.
 # 2. Opens the garage door.
 # -----------------------------------------------------------------------------
@@ -9,7 +9,7 @@ id: "home_disarm_when_i_arrive_home"
 mode: single
 
 # -----------------------------------------------------------------------------
-# Triggers: Fires when person.andrew enters the 'home' zone.
+# Triggers: Fires when I enter the 'home' zone.
 # -----------------------------------------------------------------------------
 trigger:
   - platform: zone
@@ -29,14 +29,14 @@ condition:
   - condition: not
     conditions:
       - condition: state
-        entity_id: alarm_control_panel.vivint_smart_hub
+        entity_id: alarm_control_panel.skycontrol_panel
         state: "disarmed"
         for: "00:01:00"
 
   - condition: not
     conditions:
       - condition: state
-        entity_id: cover.garage_door
+        entity_id: cover.garage_door_controller
         state: "open"
 
 # -----------------------------------------------------------------------------
@@ -49,12 +49,12 @@ action:
       - condition: not
         conditions:
           - condition: state
-            entity_id: alarm_control_panel.vivint_smart_hub
+            entity_id: alarm_control_panel.skycontrol_panel
             state: disarmed
     then:
       - service: alarm_control_panel.alarm_disarm
         target:
-          entity_id: alarm_control_panel.vivint_smart_hub
+          entity_id: alarm_control_panel.skycontrol_panel
         data:
           code: !secret alarm_code
 
@@ -62,9 +62,9 @@ action:
       - condition: not
         conditions:
           - condition: state
-            entity_id: cover.garage_door
+            entity_id: cover.garage_door_controller
             state: open
     then:
       - service: cover.open_cover
         target:
-          entity_id: cover.garage_door
+          entity_id: cover.garage_door_controller

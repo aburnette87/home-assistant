@@ -4,7 +4,7 @@ views:
     path: overview
     badges:
       - type: entity
-        entity: cover.garage_door_controller_door
+        entity: cover.garage_door_controller
         tap_action:
           action: toggle
 
