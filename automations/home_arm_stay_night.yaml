@@ -29,18 +29,18 @@ action:
   - parallel:
       - if:
           - condition: state
-            entity_id: lock.vivint_front_door_lock
+            entity_id: lock.front_door_lock
             state: "unlocked"
         then:
           - service: lock.lock
             target:
-              entity_id: lock.vivint_front_door_lock
+              entity_id: lock.front_door_lock
 
       - if:
           - condition: state
-            entity_id: alarm_control_panel.vivint_smart_hub
+            entity_id: alarm_control_panel.skycontrol_panel
             state: "disarmed"
         then:
           - service: alarm_control_panel.alarm_arm_home
             target:
-              entity_id: alarm_control_panel.vivint_smart_hub
+              entity_id: alarm_control_panel.skycontrol_panel

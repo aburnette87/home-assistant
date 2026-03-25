@@ -16,7 +16,7 @@ trigger:
     event: enter
 
 # -----------------------------------------------------------------------------
-# Condition: Only run if the sun has already set (below the horizon).
+# Condition: Only run if the sun has already set.
 # -----------------------------------------------------------------------------
 condition:
   - condition: numeric_state

@@ -16,7 +16,7 @@ trigger:
     at: sensor.sun_next_dawn
 
 # -----------------------------------------------------------------------------
-# Conditions: None specified — the action will always run when triggered.
+# Conditions: None specified — the action will always run at sunrise.
 # -----------------------------------------------------------------------------
 condition: []
 
@@ -26,6 +26,6 @@ condition: []
 action:
   - service: alarm_control_panel.alarm_disarm
     target:
-      entity_id: alarm_control_panel.vivint_smart_hub
+      entity_id: alarm_control_panel.skycontrol_panel
     data:
       code: !secret alarm_code

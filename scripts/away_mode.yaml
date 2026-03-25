@@ -15,7 +15,7 @@ sequence:
   # Turn off the vanity lights
   - service: light.turn_off
     target:
-      entity_id: light.vanity_lights
+      entity_id: light.master_bathroom_vanity_lights
 
   # Turn off all grouped Hue lights
   - service: light.turn_off
@@ -30,7 +30,7 @@ sequence:
   # Arm the Vivint alarm in Away mode
   - service: alarm_control_panel.alarm_arm_away
     target:
-      entity_id: alarm_control_panel.vivint_smart_hub
+      entity_id: alarm_control_panel.skycontrol_panel
 
   # Set Ecobee thermostat to HVAC mode 'off'
   - service: climate.set_hvac_mode
@@ -42,4 +42,4 @@ sequence:
   # Close the garage door (if open)
   - service: cover.close_cover
     target:
-      entity_id: cover.garage_door
+      entity_id: cover.garage_door_controller

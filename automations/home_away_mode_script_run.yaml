@@ -16,7 +16,7 @@ trigger:
     event: leave
 
 # -----------------------------------------------------------------------------
-# Conditions: None specified — will always run when the trigger is met.
+# Conditions: None specified — will always run the away_mode script.
 # -----------------------------------------------------------------------------
 condition: []
 

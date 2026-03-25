@@ -14,8 +14,8 @@ use_blueprint:
         - light.bar_2
         - light.spotlight
         - light.lightstrip
-        - light.right_nightstand_lamp
-        - light.left_nightstand_lamp
+        - light.right_nightstand
+        - light.left_nightstand
     default_repeat_delay:
       hours: 0
       minutes: 0
