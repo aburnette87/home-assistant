@@ -4,11 +4,11 @@ views:
     path: overview
     badges:
       - type: entity
-        entity: cover.garage_door
+        entity: cover.garage_door_controller_door
         tap_action:
           action: toggle
 
-      - alarm_control_panel.vivint_smart_hub
+      - alarm_control_panel.skycontrol_panel
       - climate.thermostat
 
     sections:
@@ -23,7 +23,7 @@ views:
               - type: target-temperature
               - type: climate-hvac-modes
           - type: tile
-            entity: alarm_control_panel.vivint_smart_hub
+            entity: alarm_control_panel.skycontrol_panel
             name: Alarm
           - type: tile
             entity: binary_sensor.workday_sensor
