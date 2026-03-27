@@ -1,3 +1,3 @@
-name: 'Romantic: City of love'
+name: 'All Romantic: City of love'
 entities:
   input_boolean.scene_all_romantic_city_of_love: true

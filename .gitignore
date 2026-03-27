@@ -18,6 +18,7 @@ www/community
 hass-emulated-hue
 
 # Ignore specific file extensions
+*.bak
 *.crt
 *.csr
 *.db

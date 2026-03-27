@@ -1,3 +1,3 @@
-name: 'Defaults: Cool bright'
+name: 'All Defaults: Cool bright'
 entities:
   input_boolean.scene_all_defaults_cool_bright: true

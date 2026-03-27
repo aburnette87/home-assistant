@@ -1,3 +1,3 @@
-name: 'Halloween: Witching hour'
+name: 'All Halloween: Witching hour'
 entities:
   input_boolean.scene_all_halloween_witching_hour: true

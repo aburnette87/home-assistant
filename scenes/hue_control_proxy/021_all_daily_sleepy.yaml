@@ -1,3 +1,3 @@
-name: 'Daily: Sleepy'
+name: 'All Daily: Sleepy'
 entities:
   input_boolean.scene_all_daily_sleepy: true

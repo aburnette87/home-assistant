@@ -1,3 +1,3 @@
-name: 'Winter holidays: Snow sparkle'
+name: 'All Winter holidays: Snow sparkle'
 entities:
   input_boolean.scene_all_winter_holidays_snow_sparkle: true
