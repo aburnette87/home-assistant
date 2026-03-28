@@ -1,0 +1,3 @@
+name: 'All Daily: Nighttime'
+entities:
+  input_boolean.scene_all_daily_nighttime: true

@@ -1,0 +1,3 @@
+name: 'All Winter holidays: Festive fun'
+entities:
+  input_boolean.scene_all_winter_holidays_festive_fun: true

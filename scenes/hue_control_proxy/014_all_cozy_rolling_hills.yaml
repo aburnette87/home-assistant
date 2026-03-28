@@ -1,0 +1,3 @@
+name: 'All Cozy: Rolling hills'
+entities:
+  input_boolean.scene_all_cozy_rolling_hills: true

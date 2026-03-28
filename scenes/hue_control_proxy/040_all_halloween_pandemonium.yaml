@@ -1,0 +1,3 @@
+name: 'All Halloween: Pandemonium'
+entities:
+  input_boolean.scene_all_halloween_pandemonium: true

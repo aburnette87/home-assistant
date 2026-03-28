@@ -1,0 +1,3 @@
+name: 'All Race Day: Miami'
+entities:
+  input_boolean.scene_all_race_day_miami: true

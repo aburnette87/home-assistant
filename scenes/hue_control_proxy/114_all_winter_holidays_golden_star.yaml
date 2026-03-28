@@ -1,0 +1,3 @@
+name: 'All Winter holidays: Golden star'
+entities:
+  input_boolean.scene_all_winter_holidays_golden_star: true
