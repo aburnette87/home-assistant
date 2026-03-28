@@ -38,9 +38,9 @@ action:
 
       - if:
           - condition: state
-            entity_id: alarm_control_panel.skycontrol_panel
+            entity_id: alarm_control_panel.arming_state
             state: "disarmed"
         then:
           - service: alarm_control_panel.alarm_arm_home
             target:
-              entity_id: alarm_control_panel.skycontrol_panel
+              entity_id: alarm_control_panel.arming_state

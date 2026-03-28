@@ -26,6 +26,6 @@ condition: []
 action:
   - service: alarm_control_panel.alarm_disarm
     target:
-      entity_id: alarm_control_panel.skycontrol_panel
+      entity_id: alarm_control_panel.arming_state
     data:
       code: !secret alarm_code

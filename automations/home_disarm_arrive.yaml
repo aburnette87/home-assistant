@@ -29,14 +29,14 @@ condition:
   - condition: not
     conditions:
       - condition: state
-        entity_id: alarm_control_panel.skycontrol_panel
+        entity_id: alarm_control_panel.arming_state
         state: "disarmed"
         for: "00:01:00"
 
   - condition: not
     conditions:
       - condition: state
-        entity_id: cover.garage_door_controller
+        entity_id: cover.garage_door_controller_door
         state: "open"
 
 # -----------------------------------------------------------------------------
@@ -49,12 +49,12 @@ action:
       - condition: not
         conditions:
           - condition: state
-            entity_id: alarm_control_panel.skycontrol_panel
+            entity_id: alarm_control_panel.arming_state
             state: disarmed
     then:
       - service: alarm_control_panel.alarm_disarm
         target:
-          entity_id: alarm_control_panel.skycontrol_panel
+          entity_id: alarm_control_panel.arming_state
         data:
           code: !secret alarm_code
 
@@ -62,9 +62,9 @@ action:
       - condition: not
         conditions:
           - condition: state
-            entity_id: cover.garage_door_controller
+            entity_id: cover.garage_door_controller_door
             state: open
     then:
       - service: cover.open_cover
         target:
-          entity_id: cover.garage_door_controller
+          entity_id: cover.garage_door_controller_door

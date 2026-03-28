@@ -25,12 +25,12 @@ sequence:
   # Turn off the ceiling fan light (if on)
   - service: light.turn_off
     target:
-      entity_id: light.ceiling_fan_light
+      entity_id: light.ceiling_fan
 
   # Arm the Vivint alarm in Away mode
   - service: alarm_control_panel.alarm_arm_away
     target:
-      entity_id: alarm_control_panel.skycontrol_panel
+      entity_id: alarm_control_panel.arming_state
 
   # Set Ecobee thermostat to HVAC mode 'off'
   - service: climate.set_hvac_mode
@@ -42,4 +42,4 @@ sequence:
   # Close the garage door (if open)
   - service: cover.close_cover
     target:
-      entity_id: cover.garage_door_controller
+      entity_id: cover.garage_door_controller_door
