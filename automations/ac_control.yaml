@@ -46,7 +46,7 @@ trigger:
 
   - id: arm_stay_after_11
     platform: state
-    entity_id: alarm_control_panel.skycontrol_panel
+    entity_id: alarm_control_panel.arming_state
     to: armed_stay
 
   - id: eleven_pm_tick
@@ -94,7 +94,7 @@ action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: alarm_control_panel.skycontrol_panel
+            entity_id: alarm_control_panel.arming_state
             state: armed_stay
           - condition: template
             value_template: "{{ after_11pm }}"
