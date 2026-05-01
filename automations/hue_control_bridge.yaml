@@ -35,11 +35,9 @@ variables:
     {% endif %}
 
   scene_name: >-
-    {% if eid in states %}
-      {{ states[eid].name }}
-    {% else %}
-      {{ '' }}
-    {% endif %}
+    {% set key = (eid | string | trim) %}
+    {% set raw = state_attr(key, 'friendly_name') | default('', true) %}
+    {{ raw | regex_replace('^All\\s+', '') }}
 
 # -----------------------------------------------------------------------------
 # Conditions: Only handle the Hue proxy scenes.
