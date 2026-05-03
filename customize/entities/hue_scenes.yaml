@@ -25,7 +25,7 @@ scene.futuristic_hal:
   entity_picture: /local/hue_scene_icons/hal.png
 
 scene.futuristic_magneto:
-  entity_picture: /local/hue_scene_icons/magento.png
+  entity_picture: /local/hue_scene_icons/magneto.png
 
 scene.futuristic_soho:
   entity_picture: /local/hue_scene_icons/soho.png
@@ -193,7 +193,7 @@ scene.defaults_relax:
   entity_picture: /local/hue_scene_icons/relax.png
 
 scene.luxurious_resplendent:
-  entity_picture: /local/hue_scene_icons/resplendant.png
+  entity_picture: /local/hue_scene_icons/resplendent.png
 
 scene.defaults_rest:
   entity_picture: /local/hue_scene_icons/rest.png
