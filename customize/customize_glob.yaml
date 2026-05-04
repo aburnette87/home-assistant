@@ -1,3 +1,5 @@
+# Hue Scene Icons
+
 "scene.*adrift":
   entity_picture: /local/hue_scene_icons/adrift.png
 
@@ -106,8 +108,8 @@
 "scene.*lily":
   entity_picture: /local/hue_scene_icons/lily.png
 
-"scene.*magento":
-  entity_picture: /local/hue_scene_icons/magento.png
+"scene.*magneto":
+  entity_picture: /local/hue_scene_icons/magneto.png
 
 "scene.*majestic_morning":
   entity_picture: /local/hue_scene_icons/majestic_morning.png
@@ -175,8 +177,8 @@
 "scene.*relax":
   entity_picture: /local/hue_scene_icons/relax.png
 
-"scene.*resplendant":
-  entity_picture: /local/hue_scene_icons/resplendant.png
+"scene.*resplendent":
+  entity_picture: /local/hue_scene_icons/resplendent.png
 
 "scene.*rest":
   entity_picture: /local/hue_scene_icons/rest.png

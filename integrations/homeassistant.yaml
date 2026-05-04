@@ -1,4 +1,2 @@
 homeassistant:
-  name: "Bonanza"
-  customize: !include_dir_merge_named ../customize/entities/
   customize_glob: !include ../customize/customize_glob.yaml
