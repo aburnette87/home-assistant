@@ -1,5 +1,3 @@
 homeassistant:
   # Bootstraps the Home Assistant core configuration
   packages: !include_dir_named integrations
-  customize: !include_dir_merge_named ../customize/entities/
-  customize_glob: !include customize/customize_glob.yaml
