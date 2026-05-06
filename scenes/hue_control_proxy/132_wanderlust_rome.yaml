@@ -1,0 +1,3 @@
+name: 'Wanderlust: Rome'
+entities:
+  input_boolean.scene_wanderlust_rome: true

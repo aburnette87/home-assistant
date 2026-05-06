@@ -21,12 +21,14 @@ blueprint:
     Savanna sunset\n```\n\nIf called as part of another script, make sure to use the
     action `script.turn_on`, so that it runs in the background ([see here](https://www.home-assistant.io/integrations/script/#waiting-for-script-to-complete)):\n\n```\naction:
     script.turn_on\ndata:\n  variables:\n    scene: Savanna sunset\nmetadata: {}\ntarget:\n
-    \ entity_id: script.hue_like_scenes\n```\n\n## Changelog \n\n### 3.5\n\n- Fixed
-    typos in the examples\n- Added a new field called \"Initial Action\", used to
-    specify actions that run before the main loop. Can be empty.\n- (Some) support
-    for RGBW color mode: For lights that *only* support RGB or RGBW color modes, the
-    color is automatically converted into RGB/RGBW. In case of RGBW, the white value
-    is set to 0. This probably doesn't work perfectly. If you encounter issues, please
+    \ entity_id: script.hue_like_scenes\n```\n\n## Changelog \n\n### 3.6\n\n- Script
+    now also accepts lights with color mode \"hs\" (fixes #18)\n- New scene categories
+    \"Harvest\" and \"Wanderlust\" (thanks, @MVrauwdeunt)\n\n### 3.5\n\n- Fixed typos
+    in the examples\n- Added a new field called \"Initial Action\", used to specify
+    actions that run before the main loop. Can be empty.\n- (Some) support for RGBW
+    color mode: For lights that *only* support RGB or RGBW color modes, the color
+    is automatically converted into RGB/RGBW. In case of RGBW, the white value is
+    set to 0. This probably doesn't work perfectly. If you encounter issues, please
     try with turning the lights off first, using the new initial action feature.\n-
     Simplified some of the template magic by using new functions, therefore minimum
     Home Assistant version is now 2025.4.\n\n### 3.4\n\n- You can now specify a label,
@@ -116,7 +118,8 @@ blueprint:
         lights when it starts.
       default:
       selector:
-        label: {}
+        label:
+          multiple: false
     scene_pre_selection:
       name: Scenes
       description: Select scenes to be offered in the UI
@@ -166,6 +169,14 @@ blueprint:
       - 'Halloween: Toil and trouble'
       - 'Halloween: Trick or treat'
       - 'Halloween: Witching hour'
+      - 'Harvest hues: Amber robin'
+      - 'Harvest hues: Autumn gold'
+      - 'Harvest hues: Downtown drizzle'
+      - 'Harvest hues: November haze'
+      - 'Harvest hues: Pumpkin patch'
+      - 'Harvest hues: Pumpkin spice'
+      - 'Harvest hues: Woodland toadstool'
+      - 'Harvest hues: Fall harvest'
       - 'Lush: Amber bloom'
       - 'Lush: Blue planet'
       - 'Lush: Forest adventure'
@@ -231,6 +242,11 @@ blueprint:
       - 'Sunrise: Horizon'
       - 'Sunrise: Sunflare'
       - 'Sunrise: Valley dawn'
+      - 'Wanderlust: Coastal nights'
+      - 'Wanderlust: Island warmth'
+      - 'Wanderlust: Ocean escape'
+      - 'Wanderlust: Rome'
+      - 'Wanderlust: Santorini'
       - 'Winter holidays: Color burst'
       - 'Winter holidays: Crystalline'
       - 'Winter holidays: Festive fun'
@@ -292,6 +308,14 @@ blueprint:
           - 'Halloween: Toil and trouble'
           - 'Halloween: Trick or treat'
           - 'Halloween: Witching hour'
+          - 'Harvest hues: Amber robin'
+          - 'Harvest hues: Autumn gold'
+          - 'Harvest hues: Downtown drizzle'
+          - 'Harvest hues: November haze'
+          - 'Harvest hues: Pumpkin patch'
+          - 'Harvest hues: Pumpkin spice'
+          - 'Harvest hues: Woodland toadstool'
+          - 'Harvest hues: Fall harvest'
           - 'Lush: Amber bloom'
           - 'Lush: Blue planet'
           - 'Lush: Forest adventure'
@@ -357,6 +381,11 @@ blueprint:
           - 'Sunrise: Horizon'
           - 'Sunrise: Sunflare'
           - 'Sunrise: Valley dawn'
+          - 'Wanderlust: Coastal nights'
+          - 'Wanderlust: Island warmth'
+          - 'Wanderlust: Ocean escape'
+          - 'Wanderlust: Rome'
+          - 'Wanderlust: Santorini'
           - 'Winter holidays: Color burst'
           - 'Winter holidays: Crystalline'
           - 'Winter holidays: Festive fun'
@@ -385,7 +414,9 @@ blueprint:
             sunset`) or the scene category followed by the scene name (e.g., `Cozy:
             Savanna sunset`). Note that this is case-sensitive.'
           selector:
-            text: {}
+            text:
+              multiline: false
+              multiple: false
           default: Savanna sunset
         default_repeat_delay:
           name: Default repeat delay
@@ -393,7 +424,8 @@ blueprint:
             Note that very short delays tend to flood the network. If this is set
             to "0:00:00" here, the script defaults to static scenes.
           selector:
-            duration: {}
+            duration:
+              enable_second: true
           default:
             hours: 0
             minutes: 0
@@ -505,7 +537,9 @@ blueprint:
         used to skip groups defined in the Zigbee controller. E.g., if set to "Silicon  Labs"
         groups created on SkyConnect will be removed.
       selector:
-        text: {}
+        text:
+          multiline: false
+          multiple: false
       default: ''
     inner_delay:
       name: Inner delay
@@ -530,6 +564,7 @@ blueprint:
           filter:
           - domain:
             - input_text
+          reorder: false
           multiple: false
     transition:
       name: Transition time
@@ -766,7 +801,20 @@ variables:
     Day\",\"n\":\"Zandvoort\"},\n  {\"c\":[[0.4648,0.4254],[0.3924,0.4132],[0.2709,0.3235],[0.255,0.4176],[0.3134,0.4131]],\"b\":0.749,\"s\":\"Peaceful\",\"n\":\"Emerald
     isle\"},\n  {\"c\":[[0.2636,0.2755],[0.2221,0.2196],[0.2636,0.2508],[0.2377,0.2547],[0.2091,0.1898]],\"b\":0.886,\"s\":\"Pure\",\"n\":\"Midwinter\"},\n
     \ {\"c\":[[0.363,0.2716],[0.4731,0.3723],[0.5813,0.3636],[0.2412,0.1171],[0.3044,0.1803]],\"b\":0.439,\"s\":\"Cozy\",\"n\":\"Tropical
-    twilight\"},\n  {\"c\":[\n    [ range(hue_min|default(0),hue_max|default(360))|random,range(sat_min|default(99),sat_max|default(101))|random
+    twilight\"},\n  {\"c\":[[0.4299,0.4725],[0.4458,0.4192],[0.4771,0.4018],[0.5217,0.3784],[0.6136,0.3421]],\"b\":0.8,\"s\":\"Harvest
+    hues\",\"n\":\"Woodland toadstool\"},\n  {\"c\":[[0.5581,0.3918],[0.5276,0.4012],[0.4939,0.4025],[0.4451,0.4199],[0.3862,0.4237]],\"b\":0.6,\"s\":\"Harvest
+    hues\",\"n\":\"Fall harvest\"},\n  {\"c\":[[0.5563,0.3914],[0.5412,0.3956],[0.4768,0.3669],[0.4087,0.3382],[0.3641,0.3383]],\"b\":0.7,\"s\":\"Harvest
+    hues\",\"n\":\"Pumpkin spice\"},\n  {\"c\":[[0.4824,0.3932],[0.5371,0.4008],[0.5547,0.3597],[0.5667,0.3343],[0.2821,0.1821]],\"b\":0.55,\"s\":\"Harvest
+    hues\",\"n\":\"November haze\"},\n  {\"c\":[[0.4661,0.4089],[0.4882,0.4243],[0.5217,0.4365],[0.5563,0.4005],[0.5825,0.3786]],\"b\":0.75,\"s\":\"Harvest
+    hues\",\"n\":\"Amber robin\"},\n  {\"c\":[[0.1658,0.3642],[0.2096,0.3991],[0.4512,0.4062],[0.4834,0.3818],[0.5263,0.3664]],\"b\":0.45,\"s\":\"Harvest
+    hues\",\"n\":\"Pumpkin patch\"},\n  {\"c\":[[0.6812,0.3084],[0.5116,0.3115],[0.5532,0.3704],[0.5932,0.3896],[0.4765,0.4371]],\"b\":0.29,\"s\":\"Harvest
+    hues\",\"n\":\"Downtown drizzle\"},\n  {\"c\":[[0.457,0.4406],[0.4636,0.4073],[0.4436,0.4271],[0.4714,0.3964],[0.4427,0.4017]],\"b\":0.796,\"s\":\"Harvest
+    hues\",\"n\":\"Autumn gold\"},\n  {\"c\":[[0.3258,0.3722],[0.3573,0.3607],[0.3855,0.3582],[0.4246,0.3914],[0.4651,0.4502]],\"b\":0.9,\"s\":\"Wanderlust\",\"n\":\"Rome\"},\n
+    \ {\"c\":[[0.2901,0.3044],[0.3332,0.3487],[0.3605,0.3708],[0.3921,0.3869],[0.4262,0.3693]],\"b\":0.8,\"s\":\"Wanderlust\",\"n\":\"Santorini\"},\n
+    \ {\"c\":[[0.4171,0.3962],[0.4379,0.4044],[0.4693,0.3698],[0.5022,0.3031],[0.3032,0.2117]],\"b\":0.65,\"s\":\"Wanderlust\",\"n\":\"Coastal
+    nights\"},\n  {\"c\":[[0.3402,0.4451],[0.3208,0.3554],[0.3607,0.3855],[0.3924,0.3918],[0.4152,0.3907]],\"b\":1.00,\"s\":\"Wanderlust\",\"n\":\"Ocean
+    escape\"},\n  {\"c\":[[0.5052,0.4257],[0.4803,0.4201],[0.4456,0.3920],[0.4148,0.3805],[0.3907,0.3652]],\"b\":0.61,\"s\":\"Wanderlust\",\"n\":\"Island
+    warmth\"},\n  {\"c\":[\n    [ range(hue_min|default(0),hue_max|default(360))|random,range(sat_min|default(99),sat_max|default(101))|random
     ],\n    [ range(hue_min|default(0),hue_max|default(360))|random,range(sat_min|default(99),sat_max|default(101))|random
     ],\n    [ range(hue_min|default(0),hue_max|default(360))|random,range(sat_min|default(99),sat_max|default(101))|random
     ],\n    [ range(hue_min|default(0),hue_max|default(360))|random,range(sat_min|default(99),sat_max|default(101))|random
@@ -814,12 +862,12 @@ variables:
     endfor -%}\n{% set ns.l = ns.lights_temporary|list %}\n{% endif %}\n\n\n{% set
     ns.lights_temporary = [] %}\n{%- for ll in ns.l %}\n  {%- set colormodes = state_attr(ll,
     \"supported_color_modes\") -%}\n  {%- if (intersect(colormodes, [\"xy\", \"rgb\",
-    \"rgbw\"]) | count > 0) or (include_mode_color_temp and \"color_temp\" in colormodes)
-    or (not include_mode_color_temp and scene_name.n in [\"Bright\", \"Concentrate\",
-    \"Cool bright\", \"Dimmed\", \"Energize\", \"Nightlight\", \"Read\", \"Relax\",
-    \"Rest\"]) -%}\n    {% set ns.lights_temporary = ns.lights_temporary + [ll] %}\n
-    \ {%- endif -%}\n{%- endfor -%}\n{% set ns.l = ns.lights_temporary|list %}\n\n{{
-    ns.l }}"
+    \"rgbw\", \"hs\"]) | count > 0) or (include_mode_color_temp and \"color_temp\"
+    in colormodes) or (not include_mode_color_temp and scene_name.n in [\"Bright\",
+    \"Concentrate\", \"Cool bright\", \"Dimmed\", \"Energize\", \"Nightlight\", \"Read\",
+    \"Relax\", \"Rest\"]) -%}\n    {% set ns.lights_temporary = ns.lights_temporary
+    + [ll] %}\n  {%- endif -%}\n{%- endfor -%}\n{% set ns.l = ns.lights_temporary|list
+    %}\n\n{{ ns.l }}"
 sequence:
 - choose:
   - conditions: '{{ lights | count == 0 }}'

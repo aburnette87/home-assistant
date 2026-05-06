@@ -1,0 +1,3 @@
+name: "All Wanderlust: Coastal nights"
+entities:
+  input_boolean.scene_all_wanderlust_coastal_nights: true

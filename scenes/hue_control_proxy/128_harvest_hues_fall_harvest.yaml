@@ -1,0 +1,3 @@
+name: 'Harvest hues: Fall harvest'
+entities:
+  input_boolean.scene_harvest_hues_fall_harvest: true
