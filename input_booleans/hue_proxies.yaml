@@ -1,4 +1,5 @@
 # All Hue
+
 scene_all_cozy_dreamy_dusk:
 scene_all_cozy_golden_pond:
 scene_all_cozy_honolulu:
@@ -44,6 +45,14 @@ scene_all_halloween_spellbound:
 scene_all_halloween_toil_and_trouble:
 scene_all_halloween_trick_or_treat:
 scene_all_halloween_witching_hour:
+scene_all_harvest_hues_amber_robin:
+scene_all_harvest_hues_autumn_gold:
+scene_all_harvest_hues_downtown_drizzle:
+scene_all_harvest_hues_fall_harvest:
+scene_all_harvest_hues_november_haze:
+scene_all_harvest_hues_pumpkin_patch:
+scene_all_harvest_hues_pumpkin_spice:
+scene_all_harvest_hues_woodland_toadstool:
 scene_all_lush_amber_bloom:
 scene_all_lush_blue_planet:
 scene_all_lush_forest_adventure:
@@ -109,6 +118,11 @@ scene_all_sunrise_first_light:
 scene_all_sunrise_horizon:
 scene_all_sunrise_sunflare:
 scene_all_sunrise_valley_dawn:
+scene_all_wanderlust_coastal_nights:
+scene_all_wanderlust_island_warmth:
+scene_all_wanderlust_ocean_escape:
+scene_all_wanderlust_rome:
+scene_all_wanderlust_santorini:
 scene_all_winter_holidays_color_burst:
 scene_all_winter_holidays_crystalline:
 scene_all_winter_holidays_festive_fun:
@@ -121,6 +135,7 @@ scene_all_winter_holidays_snow_sparkle:
 scene_all_winter_holidays_under_the_tree:
 
 # Main Hue
+
 scene_cozy_dreamy_dusk:
 scene_cozy_golden_pond:
 scene_cozy_honolulu:
@@ -166,6 +181,14 @@ scene_halloween_spellbound:
 scene_halloween_toil_and_trouble:
 scene_halloween_trick_or_treat:
 scene_halloween_witching_hour:
+scene_harvest_hues_amber_robin:
+scene_harvest_hues_autumn_gold:
+scene_harvest_hues_downtown_drizzle:
+scene_harvest_hues_fall_harvest:
+scene_harvest_hues_november_haze:
+scene_harvest_hues_pumpkin_patch:
+scene_harvest_hues_pumpkin_spice:
+scene_harvest_hues_woodland_toadstool:
 scene_lush_amber_bloom:
 scene_lush_blue_planet:
 scene_lush_forest_adventure:
@@ -231,6 +254,11 @@ scene_sunrise_first_light:
 scene_sunrise_horizon:
 scene_sunrise_sunflare:
 scene_sunrise_valley_dawn:
+scene_wanderlust_coastal_nights:
+scene_wanderlust_island_warmth:
+scene_wanderlust_ocean_escape:
+scene_wanderlust_rome:
+scene_wanderlust_santorini:
 scene_winter_holidays_color_burst:
 scene_winter_holidays_crystalline:
 scene_winter_holidays_festive_fun:

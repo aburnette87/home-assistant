@@ -47,7 +47,7 @@ condition:
     value_template: >-
       {{
         eid | regex_match(
-          '^scene\\.(all_)?(cozy|daily|defaults|dreamy|futuristic|halloween|lush|luxurious|party_vibes|peaceful|pure|race_day|refreshing|romantic|serenity|sunrise|winter_holidays)_'
+          '^scene\\.(all_)?(cozy|daily|defaults|dreamy|futuristic|halloween|harvest_hues|lush|luxurious|party_vibes|peaceful|pure|race_day|refreshing|romantic|serenity|sunrise|wanderlust|winter_holidays)_'
         )
       }}
 

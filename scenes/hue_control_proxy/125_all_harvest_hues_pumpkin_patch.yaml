@@ -1,0 +1,3 @@
+name: "All Harvest hues: Pumpkin patch"
+entities:
+  input_boolean.scene_all_harvest_hues_pumpkin_patch: true
