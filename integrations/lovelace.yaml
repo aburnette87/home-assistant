@@ -1,9 +1,7 @@
 lovelace:
   resource_mode: yaml
   resources:
-    - url: /hacsfiles/hass-hue-icons/hass-hue-icons.js
-      type: module
-    - url: /hacsfiles/lovelace-hue-like-light-card/hue-like-light-card.js
+    - url: /local/community/lovelace-hue-like-light-card/hue-like-light-card.js
       type: module
 
   dashboards:
